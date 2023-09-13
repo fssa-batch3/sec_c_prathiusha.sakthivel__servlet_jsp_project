@@ -11,7 +11,7 @@
 	<main>
 		<div class="container">
 			<form action="deleteform" id="create_form">
-
+				<h1>Delete Product</h1>
 				<div class="titlename">
 					<label>Product Id:</label> <br> <br> <input type="text"
 						id="titlename" name="productid">

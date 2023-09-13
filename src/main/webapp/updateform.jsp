@@ -8,11 +8,11 @@
 <link rel="stylesheet" href="./assets/css/updateform.css">
 </head>
 <body>
-	
+
 	<main>
 		<div class="container">
 			<form action="updateform" id="create_form" method="post">
-
+				<h1>Update Product</h1>
 				<div class="titlename">
 					<label>Product Id:</label> <br> <br> <input type="text"
 						id="titlename" name="productid">

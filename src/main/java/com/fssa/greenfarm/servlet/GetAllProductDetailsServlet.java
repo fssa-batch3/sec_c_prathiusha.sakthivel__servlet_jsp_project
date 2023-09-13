@@ -43,7 +43,7 @@ public class GetAllProductDetailsServlet extends HttpServlet {
 	    	List<Product> productList = (List<Product>) service.readAllProduct();
 	    	request.setAttribute("productList", productList);
 	    }
-	    catch(DAOException | ProductInvalidException | SQLException e){
+	    catch(DAOException  | SQLException e){
 	    	e.getMessage();
 	    	
 	    }

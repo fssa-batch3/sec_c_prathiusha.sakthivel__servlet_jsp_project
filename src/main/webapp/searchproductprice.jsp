@@ -11,18 +11,17 @@
 	<main>
 		<div class="container">
 			<form action="./searchproductbyprice" id="create_form" method="get">
-
+				<h1>Filter Product By Price</h1>
 				<div class="titlename">
-					<label>Product Price(FromRange):</label> <br> <br> <input type="number"
-						id="titlename" name="FromRange">
+					<label>Product Price(FromRange):</label> <br> <br> <input
+						type="number" id="titlename" name="FromRange">
 				</div>
 
 				<div class="titlename">
-					<label>Product Price(ToRange):</label> <br> <br> <input type="number"
-						id="titlename" name="ToRange">
+					<label>Product Price(ToRange):</label> <br> <br> <input
+						type="number" id="titlename" name="ToRange">
 				</div>
-					<button type="submit" class="delete" value="submit">
-				Search
+				<button type="submit" class="delete" value="submit">Search
 				</button>
 
 			</form>

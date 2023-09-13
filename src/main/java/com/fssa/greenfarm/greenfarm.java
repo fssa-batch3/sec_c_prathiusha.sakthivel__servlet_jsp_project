@@ -43,7 +43,7 @@ public class greenfarm extends HttpServlet {
 	    	request.setAttribute("check", "check");
 	    	System.out.println("gff"+ product);
 	    }
-	    catch(DAOException | ProductInvalidException | SQLException e){
+	    catch(DAOException  | SQLException e){
 	    	e.getMessage();
 	    	
 	    }

@@ -12,6 +12,7 @@
 	<main>
 		<div class="container">
 			<form action="productform" id="create_form" method="post">
+			<h1>Add Product</h1>
 				<div class="titlename">
 					<label>Product Name:</label> <br> <br> <input type="text"
 						id="titlename" name="productname">

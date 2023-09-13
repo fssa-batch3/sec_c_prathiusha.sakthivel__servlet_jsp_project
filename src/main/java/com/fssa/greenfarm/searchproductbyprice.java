@@ -42,7 +42,7 @@ public class searchproductbyprice extends HttpServlet {
 //			response.sendRedirect(request.getContextPath() + "/GetAllProductDetailsServlet");
 	    
 	    }
-	    catch(DAOException | ProductInvalidException | SQLException e){
+	    catch(DAOException  | SQLException e){
 	    	System.out.println(e.getMessage());
 	    	
 	    	
