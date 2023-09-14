@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+ <link rel="stylesheet" href="../assets/css/cart.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+    <title>Addtocart</title>
+</head>
+<body>
+    <!-- header -->
+    <header>
+
+        <img class="logo" src="https://iili.io/Hy3dOH7.png" height="80px" width="250px" alt="img">
+
+        <div class="menu-bar">
+
+            <ul class="main">
+                <li class="down">
+                    <a class="hdg" href="../pages/home.html">Home </a>
+                </li>
+                <li class="down">
+                    <a class="hdg" href="../html/about.html">About</a>
+
+                </li>
+
+                <li>
+                    <a class="hdg" href="../html/profilepage.html">Profile</a>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </header>
+
+
+    <div class="main_container">
+        <div class="get">
+            <p>Your Cart is Empty</p>
+        </div>
+
+        <!-- <div class="container">
+            <div class="cart">
+                <div class="top">
+                    <h2>Shopping Cart</h2>
+                    <h2 id="itemA">4 Items</h2>
+                </div>
+                <table cellspacing="0" class="table-head">
+                    <tr>
+                        <th width="150" class="head-img">Image</th>
+                        <th width="360" class="head-img">Name</th>
+                        <th width="150" class="head-img">Price</th>
+                        <th width="150" class="head-img">Delete</th>
+                    </tr>
+                </table>
+                <table id="root" cellspacing="0"></table>
+                <div class="product_image">
+                    <img class="img-box" src="../assets/image/tomato.jpg">
+                    <p class="title">FreshOrganicTomato</p>
+                    <p class="price">30</p>
+                    <div class="input_div">
+                        <button class="btn1 btn-decrement">-</button>
+                        <input class="btn-input" id="quantity" type="text" value="1">
+                        <button class="btn1 btn-increment">+</button>
+                    </div>
+                    <div class="total-amount">
+                        <h2>Price:</h2>
+
+                    </div>
+                    <i id="bin-icon" class="fa-solid fa-trash"></i>
+        
+                </div>
+                <hr>
+            </div>
+            <div class="summary">
+                <div class="top">
+                <h2>Order Summary</h2>
+            </div>
+            
+            <div class="detail">
+                <h2 id="itemB">4 Items</h2>
+                <h2 id="totalA">₹ 30</h2>
+            </div>
+            <div style="margin-top: 30px; padding: 0 30px;">
+                <h2>Shipping</h2>
+                <input type="text" placeholder="standard deilivery">
+                <h2>Promo Code</h2>
+                <input type="text" placeholder="Enter Your code" id="promoCode">
+                <button class="first-btn" id="promo" onclick="promo()">Apply</button>
+            </div>
+            <hr>
+            <div class="top">
+                <h2>Total</h2>
+                <h2 id="totalB">₹ 30</h2>
+            </div>
+            <div style="padding: 0 10px; margin-bottom: 20px;">
+                <button class="checkout">Check out</button>
+
+            </div>
+        </div>
+        </div> -->
+
+    </div>
+
+    
+
+    <script>
+        // Create the main container
+        const mainContainer = document.createElement('div');
+        mainContainer.classList.add('main_container');
+
+        // Create the container
+        const container = document.createElement('div');
+        container.classList.add('container');
+
+        // Create the cart section
+        const cart = document.createElement('div');
+        cart.classList.add('cart');
+
+        // Create the top section of the cart
+        const topSection = document.createElement('div');
+        topSection.classList.add('top');
+
+        const shoppingCartTitle = document.createElement('h2');
+        shoppingCartTitle.innerText = 'Shopping Cart';
+
+        const itemATitle = document.createElement('h2');
+        itemATitle.id = 'itemA';
+        itemATitle.innerText = '';
+
+        topSection.appendChild(shoppingCartTitle);
+        topSection.appendChild(itemATitle);
+
+        cart.appendChild(topSection);
+
+        // Create the table of the cart
+        const tableHead = document.createElement('table');
+        tableHead.classList.add('table-head');
+        tableHead.setAttribute('cellspacing', '0');
+
+        const tableHeadRow = document.createElement('tr');
+
+        const imgHead = document.createElement('th');
+        imgHead.classList.add('head-img');
+        imgHead.setAttribute("id", "headimage")
+        imgHead.setAttribute('width', '150');
+        imgHead.innerText = 'Image';
+
+        const nameHead = document.createElement('th');
+        nameHead.classList.add('head-img');
+        nameHead.setAttribute("id", "headname")
+        nameHead.setAttribute('width', '360');
+        nameHead.innerText = 'Name';
+
+        const priceHead = document.createElement('th');
+        priceHead.classList.add('head-img');
+        priceHead.setAttribute("id", "headprice")
+        priceHead.setAttribute('width', '150');
+        priceHead.innerText = 'Price';
+
+        const quantityHead = document.createElement('th');
+        quantityHead.classList.add('head-img');
+        quantityHead.setAttribute("id", "headquantity")
+        quantityHead.setAttribute('width', '150');
+        quantityHead.innerText = 'Quantity';
+
+        const deleteHead = document.createElement('th');
+        deleteHead.classList.add('head-img');
+        deleteHead.setAttribute("id", "headdelete")
+        deleteHead.setAttribute('width', '150');
+        deleteHead.innerText = 'Delete';
+
+        tableHeadRow.appendChild(imgHead);
+        tableHeadRow.appendChild(nameHead);
+        tableHeadRow.appendChild(priceHead);
+        tableHeadRow.appendChild(quantityHead);
+        tableHeadRow.appendChild(deleteHead);
+
+        tableHead.appendChild(tableHeadRow);
+
+        cart.appendChild(tableHead);
+
+        // Create the root table
+        const rootTable = document.createElement('table');
+        rootTable.setAttribute('cellspacing', '0');
+        rootTable.id = 'root';
+
+        cart.appendChild(rootTable);
+
+        const cart_sample = JSON.parse(localStorage.getItem("cart")) ?? [];
+        const user = JSON.parse(localStorage.getItem("active_user"));
+
+        let total = 0;
+
+
+        // cart_sample.find(e => {
+
+
+        for (let i = 0; i < cart_sample.length; i++) {
+            if (user.email == cart_sample[i].email) {
+
+                total += Number(cart_sample[i].price);
+
+                const product_div = document.createElement("div")
+                product_div.setAttribute("class", "product_image")
+                cart.append(product_div)
+
+                const product_image = document.createElement("img")
+                product_image.setAttribute("class", "img-box")
+                product_image.setAttribute("src", cart_sample[i].image)
+                product_div.append(product_image);
+
+                const title = document.createElement("p")
+                title.setAttribute("class", "title")
+                title.innerText = cart_sample[i].titlename;
+                product_div.append(title)
+
+                const cost = document.createElement("p")
+                cost.setAttribute("class", "price")
+                cost.setAttribute("data-keyword", cart_sample[i].price)
+                cost.innerText = cart_sample[i].price;
+                product_div.append(cost)
+
+                const quanty = document.createElement("p")
+                quanty.setAttribute("class", "quanty")
+                quanty.innerText = `${250}g`;
+                product_div.append(quanty)
+
+                decrement = document.createElement("button");
+                decrement.setAttribute("class", "btn1 btn-decrement");
+                decrement.innerText = "-"
+                product_div.append(decrement)
+
+                adding = document.createElement("input");
+                adding.setAttribute("class", "btn-input")
+                adding.setAttribute("id", "quantity")
+                adding.setAttribute("type", "text")
+                adding.setAttribute("value", "1")
+                product_div.append(adding)
+
+                increment = document.createElement("button")
+                increment.setAttribute("id", "increment")
+                increment.setAttribute("class", "btn1 btn-increment")
+                increment.innerText = "+"
+                product_div.append(increment)
+
+                sub_div = document.createElement("div")
+                sub_div.setAttribute("class", "total-amount")
+                product_div.append(sub_div)
+
+                const delete_icon = document.createElement("i")
+                delete_icon.setAttribute("id", "bin-icon")
+                delete_icon.setAttribute("class", "fa-solid fa-trash")
+                product_div.append(delete_icon)
+
+                const break_tag = document.createElement("hr")
+                break_tag.setAttribute("id", "break")
+                product_div.append(break_tag)
+
+
+                delete_icon.addEventListener("click", (e) => {
+                    alert("Are you sure do you want to remove the product from cart")
+                    for (let j = 0; j < cart_sample.length; j++) {
+                        if (user.email == cart_sample[i].email && cart_sample[i].titlename == cart_sample[j].titlename) {
+                            cart_sample.splice(i, 1);
+                            localStorage.setItem("cart", JSON.stringify(cart_sample));
+                            location.reload();
+                            break;
+                        }
+                    }
+                })
+
+            }
+        }
+        const last_user_details1 = JSON.parse(localStorage.getItem("user_records"));
+        const last_email1 = localStorage.getItem("data");
+
+        last_user_details1.filter(item => {
+            if (last_email1 == item.email) {
+                // Create the horizontal line
+                const hr = document.createElement('hr');
+
+                cart.appendChild(hr);
+
+                // Create the summary section
+                const summary = document.createElement('div');
+                summary.classList.add('summary');
+
+                // Create the top section of the summary
+                const summaryTopSection = document.createElement('div');
+                summaryTopSection.classList.add('top');
+
+                const orderSummaryTitle = document.createElement('h2');
+                orderSummaryTitle.innerText = 'Order Summary';
+
+                summaryTopSection.appendChild(orderSummaryTitle);
+
+                summary.appendChild(summaryTopSection);
+
+                // Create the detail section of the summary
+                const detail = document.createElement('div');
+                detail.classList.add('detail');
+
+                const itemBTitle = document.createElement('h2');
+                itemBTitle.id = 'itemB';
+                itemBTitle.innerText = '';
+
+                const totalATitle = document.createElement('h2');
+                totalATitle.id = 'totalA';
+                totalATitle.innerText = '';
+
+                detail.appendChild(itemBTitle);
+                detail.appendChild(totalATitle);
+
+                summary.appendChild(detail);
+
+                // Create the shipping and promo code section
+                const shippingAndPromo = document.createElement('div');
+                shippingAndPromo.style.marginTop = '30px';
+                shippingAndPromo.style.padding = '0 30px';
+
+                const shippingTitle = document.createElement('h2');
+                shippingTitle.innerText = 'Shipping';
+
+                const shippingInput = document.createElement('input');
+                shippingInput.setAttribute("class", "shippingInput")
+                shippingInput.setAttribute("id", "edit_address")
+                shippingInput.setAttribute('type', 'text');
+                shippingInput.setAttribute('disabled', '');
+                shippingInput.setAttribute('placeholder', item.communication.address);
+                // shippingInput.innerText=
+
+                const promoCodeTitle = document.createElement('h2');
+                promoCodeTitle.innerText = ' Mobile number';
+
+                const promoCodeInput = document.createElement('input');
+                promoCodeInput.setAttribute("id", "apply")
+                promoCodeInput.setAttribute('type', 'number')
+                promoCodeInput.setAttribute('minlength', '10')
+                promoCodeInput.setAttribute('maxlength', '10')
+                promoCodeInput.setAttribute('disabled', '');
+                promoCodeInput.setAttribute('placeholder', item.communication.mobile_number);
+
+                const button_1 = document.createElement("button");
+                button_1.setAttribute("class", "first-btn")
+                button_1.setAttribute("id", "promo")
+                // button_1.setAttribute("onclick", "promo()")
+                button_1.innerText = "Edit"
+
+                const button = document.createElement("button");
+                button.setAttribute("class", "first-btn")
+                button.setAttribute("id", "promo")
+                button.setAttribute("onclick", "promo()")
+                button.innerText = "Apply"
+
+                const hr_2 = document.createElement("hr")
+
+                shippingAndPromo.append(shippingTitle, shippingInput, promoCodeTitle, promoCodeInput, button_1, button, hr);
+                summary.append(shippingAndPromo)
+
+                const div = document.createElement("div")
+                div.setAttribute("class", "top")
+
+                const heading_2 = document.createElement("h2")
+                heading_2.innerText = "Total"
+
+                const heading_3 = document.createElement("h2")
+                heading_3.setAttribute("id", "totalB")
+                heading_3.innerText = "₹ 30"
+                div.append(heading_2, heading_3)
+
+                const style = document.createElement("div")
+                style.style.marginBottom = '20px';
+                style.style.padding = '0 10px';
+
+                const anchor = document.createElement("a");
+                anchor.setAttribute("id", "checkout")
+                style.append(anchor);
+
+                const button_2 = document.createElement("button")
+                button_2.setAttribute("class", "checkout")
+                button_2.innerText = "Check out"
+
+                anchor.append(button_2)
+                summary.append(div, style)
+
+                container.append(cart)
+                container.append(summary)
+
+                document.querySelector(".main_container").append(container);
+            }
+        });
+        //cart increment function
+
+        const product_item = JSON.parse(localStorage.getItem("cart")) ?? [];
+        const incrementBtn = document.querySelector(".btn-increment")
+        const product_name = document.querySelector(".title");
+        const product_quantity = document.querySelector(".quanty");
+        const product_price = document.querySelector(".price");
+
+        //increment
+        const increment1 = document.querySelectorAll(".btn-increment");
+    
+        increment1.forEach((obj, index) => {
+            let valueCount = 1;
+
+            obj.addEventListener("click", (e) => {//e.target
+
+                e.target.parentElement.children[5].value = Number(e.target.parentElement.children[5].value) + valueCount;
+                console.log(e.target.parentElement.children[5].value);
+                console.log(e.target.parentElement.children[1].innerText)
+                console.log(e.target.parentElement);
+
+                let check = Number(e.target.parentElement.children[5].value) * 250;
+                e.target.parentElement.children[3].innerText = `${check}g`;
+
+                if ((check >= "250")) {
+
+                    e.target.parentElement.children[3].innerText = `${check}g`;
+                }
+                if (check >= 1000) {
+
+                    const kg = Number(check) / 1000;
+                    e.target.parentElement.children[3].innerText = `${kg}kg`
+                }
+
+                if (JSON.parse(localStorage.getItem("cart"))) {
+                    product_item.find(el => {
+                        if (e.target.parentElement.children[1].innerText == el["titlename"]) {
+
+                            return check = el;
+                        }
+                    })
+                    if (check) {
+                        check["quanty"] = e.target.parentElement.children[3].innerText;
+                        check["price"] = e.target.parentElement.children[2].innerText;
+                        localStorage.setItem("cart", JSON.stringify(product_item))
+                    }
+                    else {
+                        const incrementedObj = {
+                            "title": e.target.parentElement.children[1].innerText,
+                            "quanty": e.target.parentElement.children[3].innerText,
+                            "price": e.target.parentElement.children[2].innerText
+                        }
+                        console.log(incrementedObj)
+                        product_item.push(incrementedObj)
+                        localStorage.setItem("cart", JSON.stringify(product_item))
+                    }
+                }
+                else {
+                    const incrementedObj = {
+                        "title": e.target.parentElement.children[1].innerText,
+                        "quanty": e.target.parentElement.children[3].innerText,
+                        "price": e.target.parentElement.children[2].innerText
+                    }
+                    console.log(incrementedObj)
+                    product_item.push(incrementedObj)
+                    localStorage.setItem("cart", JSON.stringify(product_item))
+                }
+            })
+
+        })
+
+        //decrement
+        const decrement1 = document.querySelectorAll(".btn-decrement");
+        console.log(decrement1);
+
+        decrement1.forEach((obj, index) => {
+
+            obj.addEventListener("click", (e) => {
+                let decrement_valueCount = Number(e.target.parentElement.children[5].value) - 1;
+                let check = decrement_valueCount * 250
+
+                console.log(decrement_valueCount)
+                console.log(check)
+
+                if (decrement_valueCount == 1) {
+                    e.target.parentElement.children[5].value = 1;
+                    e.target.parentElement.children[3].innerText = `250g`;
+
+                }
+
+                if (decrement_valueCount > 1) {
+                    e.target.parentElement.children[5].value = decrement_valueCount--;
+                    e.target.parentElement.children[3].innerText = `${check}g`;
+                }
+
+                if (check >= 1000) {
+                    const kg = Number(check) / 1000;
+                    e.target.parentElement.children[3].innerText = `${kg}kg`
+                }
+            });
+        })
+
+
+        //calculation
+        const input_qty = document.querySelectorAll(".price")
+        const input_total = document.querySelectorAll(".btn-input")
+        const price = document.querySelectorAll(".price")
+        const btn = document.querySelectorAll(".btn-increment")
+        const head = document.getElementById("totalB")
+
+        for (let i = 0; i < input_qty.length; i++) {
+            btn[i].addEventListener("click", function () {
+
+                let keyword = price[i].dataset.keyword
+                console.log(input_qty[i].value);
+
+                price[i].dataset.keyword = parseFloat(input_total[i].value) * parseFloat(price[i].innerHTML)
+
+                let total_price = 0
+                for (let j = 0; j < btn.length; j++) {
+                    let key = price[j].dataset.keyword
+                    total_price = total_price + parseFloat(key)
+                }
+
+                head.innerHTML = total_price
+            })
+        }
+
+        //empty cart
+
+        let get_element = JSON.parse(localStorage.getItem("cart")) ?? [];
+        let css = document.querySelector(".get");
+        let contain = document.querySelector(".container")
+
+        if (get_element == "") {
+            css.style.display = "block"
+        }
+        else {
+            css.style.display = "none"
+        }
+
+        //edit
+        let apply_button = document.getElementById("apply");
+
+        let edit = document.getElementById("edit_address");
+
+        let inputbox = document.querySelectorAll("input")
+
+        edit.addEventListener("click", () => {
+
+        })
+        let promo = document.getElementById("promo")
+        promo.addEventListener("click", () => {
+            document.querySelector("#edit_address").removeAttribute("disabled", "")
+
+            document.querySelector("#apply").removeAttribute("disabled", "")
+        })
+       
+        apply_button.addEventListener("click",(e)=>{
+            e.preventDefault()
+        })
+
+        let checkout = document.getElementById("checkout")
+        checkout.addEventListener("click", function(){
+
+            get_element.find(el => {
+
+                if(el.email === user.email){
+                    window.location.href = "buynow.html?name=" + el.email
+                }
+
+            })
+        })
+
+
+        
+        
+
+    </script>
+
+</body>
+
+</html>

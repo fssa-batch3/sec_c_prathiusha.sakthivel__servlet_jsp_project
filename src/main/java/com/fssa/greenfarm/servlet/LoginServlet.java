@@ -1,14 +1,21 @@
 package com.fssa.greenfarm.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import com.fssa.greenfarm.model.Product;
+import com.fssa.greenfarm.exception.DAOException;
+import com.fssa.greenfarm.exception.InvalidUserDetailException;
+import com.fssa.greenfarm.model.User;
+import com.fssa.greenfarm.service.UserService;
+import com.google.protobuf.ServiceException;
 
 /**
  * Servlet implementation class LoginServlet
@@ -22,28 +29,45 @@ public class LoginServlet extends HttpServlet {
 	 */
 	public LoginServlet() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		Product product = new Product();
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		UserService userservice = new UserService();
+
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+
+		PrintWriter out = response.getWriter();
+
+		User user = new User();
+		user.setEmail(email);
+		user.setPassword(password);
+
+		try {
+
+			if (userservice.userLogin(email, password)) {
+				HttpSession session = request.getSession(true);
+				session.setAttribute("email", email);
+				session.setAttribute("loggedInSuccess", true);
+				request.getRequestDispatcher("pages/home.jsp").forward(request, response);
+			}else {
+				response.sendRedirect(request.getContextPath() + "/login.jsp?error=Login Failded");
+			}
+
+		} catch (ServiceException | InvalidUserDetailException | DAOException | SQLException e) {
+			e.printStackTrace();
+			out.print(e.getMessage());
+//			response.sendRedirect("/login.jsp?error=" + e.getMessage());
+			
+			
+			// RequestDispatcher dispatcher =
+			// request.getRequestDispatcher(request.getContextPath() + "/pages/login.jsp");
+			// dispatcher.forward(request, response);
+			// e.printStackTrace();
+
+		}
+
 	}
 
 }
