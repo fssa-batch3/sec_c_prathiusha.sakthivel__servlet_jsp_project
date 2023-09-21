@@ -5,7 +5,8 @@
 }
 
 body {
-    background-image: url(https://iili.io/JHFTlYN.jpg);
+	/**background-image:url(https://iili.io/JJnyRjI.jpg);**/
+	background-repeat:no-repeat;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -15,8 +16,7 @@ body {
 
 .container {
     background-color: white;
-    border-radius: 50px;
-    box-shadow: 20px 20px 20px rgb(218, 224, 220);
+    box-shadow: -5px 5px 20px 5px rgb(218, 224, 220);
     overflow: hidden;
     max-width: 100%;
     width: 450px;

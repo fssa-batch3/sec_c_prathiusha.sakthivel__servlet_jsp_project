@@ -39,7 +39,6 @@
 	Product product = null;
 	try {
 	    product = ProductService.readProduct(id);
-	    System.out.print(product);
 	} catch (SQLException e) {
 		System.out.print("failed");
 	    e.printStackTrace();
@@ -63,14 +62,75 @@
 			<div class="btn"></div>
 			<p class="description">Description: <%=product.getDescription() %></p>
 			<button id="cartbutton">
-				<a href="#" id="add-to-cart">Add to Cart</a>
+				<a href="pages/cart.jsp?id=<%=product.getId()%>" id="add-to-cart">Add to Cart</a>
 			</button>
 			<button id="buybutton">
-				<a href="#">Buy Now</a>
+				<a href="pages/payment.jsp?id=<%=product.getId()%>">Buy Now</a>
 			</button>
 		</div>
 	
 	</div>
+	
+	<script >
+
+
+    let increment1 = document.getElementById("increment")
+    let pricelist = document.getElementById("quantity_of_product");
+    let gramquantity=document.querySelector("gramquantity")
+    console.log(increment1)
+    let decrement1 = document.getElementById("decrement");
+
+
+    let maxbtn = document.getElementById("increment")
+    let minbtn = document.getElementById("decrement")
+    let input = document.querySelector("input")
+    let price = document.getElementById("quantity_of_product")
+    let gram = document.getElementById("gram")
+    let id = input.dataset.keyword
+
+
+
+    maxbtn.addEventListener("click",function () {
+      
+
+        let qty = parseFloat(input.value);
+        qty = qty + 1
+        input.value = qty
+        let gram_value = 250 * input.value
+
+        
+        price.innerText = `Price : ₹${id * input.value}`
+        if(gram_value >= 250){
+          gram.innerText = ` Quantity: ${gram_value}g`
+        }
+        if(gram_value >= 1000){
+          gram.innerText = `Quantity: ${gram_value/1000}kg`
+        }
+
+
+    })
+     //this event for decrease quantity value
+        minbtn.addEventListener("click",function () {
+            if (input.value !== "1") {
+         let qty = parseFloat(input.value);
+         qty = qty - 1
+         input.value = qty
+         let gram_value = 250 * input.value
+
+         price.innerText = `Price : ₹${id * input.value}`
+
+         if(gram_value >= 250){
+          gram.innerText = ` Quantity: ${gram_value}g`
+        }
+        if(gram_value >= 1000){
+          gram.innerText = `Quantity: ${gram_value/1000}kg`
+        }
+            }
+            
+            
+        })	
+	</script>
+	
 </body>
 
 </html>

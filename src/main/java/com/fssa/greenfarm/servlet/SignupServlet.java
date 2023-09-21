@@ -20,10 +20,10 @@ import com.google.protobuf.ServiceException;
 @WebServlet("/SignupServlet")
 public class SignupServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-  
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		String firstname = request.getParameter("firstname");
 		String lastname = request.getParameter("lastname");
 		String email = request.getParameter("email");
@@ -34,38 +34,35 @@ public class SignupServlet extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("./signup.jsp");
 			rd.forward(request, response);
 
-		}else {	
-				User user=new User();
-				
-				user.setFirstname(firstname);
-				user.setLastname(lastname);
-				user.setEmail(email);
-				user.setPassword(password);
-				
-		UserService userservice=new UserService();
-		
-		
-		try {
-		boolean added=userservice.userSignUp(user);
-	
-		if(added) {
-			System.out.println("added");
-			response.sendRedirect("./login.jsp");
-			
-			
+		} else {
+			User user = new User();
+
+			user.setFirstname(firstname);
+			user.setLastname(lastname);
+			user.setEmail(email);
+			user.setPassword(password);
+
+			UserService userservice = new UserService();
+
+			try {
+				boolean added = userservice.userSignUp(user);
+
+				if (added) {
+					System.out.println("added");
+					response.sendRedirect("./login.jsp");
+
+				} else {
+					System.out.println("not added");
+				}
+
+			} catch (ServiceException e) {
+				System.out.println(e.getMessage());
+				e.printStackTrace();
+
+				response.sendRedirect("signup.jsp");
+			}
+
 		}
-		else {
-			System.out.println("not added");
-		}
-	
-		} catch (ServiceException e) {
-			System.out.println(e.getMessage());
-			e.printStackTrace();
-			
-			response.sendRedirect("signup.jsp");
-		}
-		
-	}
 	}
 
 }

@@ -30,8 +30,7 @@
 
 					<div class="dropdown-content">
 						<button>
-							<a
-								href="http://localhost:8080/greenfarm-web/GetAllProductDetailsServlet">Vegetables</a>
+							<a href="http://localhost:8080/greenfarm-web/GetAllProductDetailsServlet">Vegetables</a>
 						</button>
 						<a class="fruits" href="#">Fruits</a>
 					</div>
@@ -46,24 +45,18 @@
 				Boolean loggedIn = (Boolean) session.getAttribute("loggedInSuccess");
 				if (loggedIn != null && loggedIn) {
 				%>
-				<li class="register"><a href="./pages/profilepage.jsp">
-						Profile</a></li>
+				<li class="register"><a href="./UpdateProfile">Profile</a></li>
 				<%
 				} else {
 				%>
-				<li id="profile-btn"><a href="./signup.jsp">Sign-in</a></li>
+				<li id="profile-btn"><a href="../signup.jsp">Sign-in</a></li>
 
 				<%
 				}
 				%>
-
-
-				<a href="../pages/orderhistory.html"> <i id="icon"
+				<a href="<%=request.getContextPath()%>/OrderHistoryServlet"> <i id="icon"
 					class="fa-sharp fa-solid fa-bars"></i>
-				</a> <a href="../pages/cart.html"> <i id="cart_icon"
-					class="fa-solid fa-cart-shopping fa-fade"></i>
-				</a>
-				<p id="cartcount">0</p>
+				
 
 			</div>
 		</div>

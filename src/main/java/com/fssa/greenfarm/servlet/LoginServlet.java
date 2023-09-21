@@ -33,6 +33,7 @@ public class LoginServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		UserService userservice = new UserService();
 
 		String email = request.getParameter("email");
@@ -52,7 +53,7 @@ public class LoginServlet extends HttpServlet {
 				session.setAttribute("loggedInSuccess", true);
 				request.getRequestDispatcher("pages/home.jsp").forward(request, response);
 			}else {
-				response.sendRedirect(request.getContextPath() + "/login.jsp?error=Login Failded");
+				response.sendRedirect(request.getContextPath() + "/login.jsp?error=Login Failed");
 			}
 
 		} catch (ServiceException | InvalidUserDetailException | DAOException | SQLException e) {
