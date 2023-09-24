@@ -21,7 +21,7 @@
 		<div class="menu-bar">
 
 			<div class="main">
-				<a href="#">Home </a> <a class="about" href="../pages/about.html">About
+				<a href="#">Home </a> <a class="about" href="../pages/about.jsp">About
 				</a>
 
 				<div class="dropdown">
@@ -45,7 +45,10 @@
 				Boolean loggedIn = (Boolean) session.getAttribute("loggedInSuccess");
 				if (loggedIn != null && loggedIn) {
 				%>
-				<li class="register"><a href="./UpdateProfile">Profile</a></li>
+				<li class="register"><a href="<%=request.getContextPath()%>/UpdateProfile">Profile</a></li>
+				
+				<a href="<%=request.getContextPath()%>/OrderHistoryServlet"> <i id="icon"
+					class="fa-sharp fa-solid fa-bars"></i>
 				<%
 				} else {
 				%>
@@ -54,8 +57,6 @@
 				<%
 				}
 				%>
-				<a href="<%=request.getContextPath()%>/OrderHistoryServlet"> <i id="icon"
-					class="fa-sharp fa-solid fa-bars"></i>
 				
 
 			</div>
@@ -68,9 +69,26 @@
 			<p class="para">
 				We Supply Organic<br>Fruits and Vegetables
 			</p>
+			<%
+				Boolean userloggedIn = (Boolean) session.getAttribute("loggedInSuccess");
+				if (userloggedIn != null && userloggedIn) {
+				%>
+				
 			<a class="shop"
 				href="http://localhost:8080/greenfarm-web/GetAllProductDetailsServlet">Shop
 				Now</a>
+					
+					<%
+				} else {
+				%>
+				<a class="shop"
+				href="http://localhost:8080/greenfarm-web/GetAllProductDetailsServlet" onclick="showSignInPopup()">Shop
+				Now</a>
+
+				<%
+				}
+				%>
+			
 			<div class="bor">
 				<img src="https://iili.io/J9EoMvt.jpg" height="80px" width="80px"
 					alt="img"> <img src="https://iili.io/J9Eo4wu.jpg"
@@ -106,7 +124,7 @@
 							FRESH<br> VEGETABLES
 						</p>
 						<p>
-							<a class="but" href="./index.html">View More</a>
+							<a class="but" href="./home.jsp">View More</a>
 						</p>
 					</div>
 				</div>
@@ -122,7 +140,7 @@
 							FRESH<br>FRUITS
 						</p>
 						<p>
-							<a class="but1" href="./index.html">View More</a>
+							<a class="but1" href="./home.jsp">View More</a>
 						</p>
 					</div>
 				</div>
@@ -272,99 +290,11 @@
 	</footer>
 
 	<script>
-      //sending mail from feedback
-      function sendEmail() {
-        Email.send({
-          Host: "smtp.elasticemail.com",
-          Username: "prathiusha22@gmail.com",
-          Password: "CE4894D259B1A7D3136852B9F0F60CD46FC4",
-          To: 'prathiusha22@gmail.com',
-          From: 'prathiusha22@gmail.com',
-          Subject: "Feedback",
-          Body: `This user ` + ` ${document.getElementById("name").value
-            }sent Feedback through this` + ` ${document.getElementById("email").value
-            } ` + `with a feedback${document.getElementById("message").value}`
-
-        }).then(
-          message => alert("Feedback sent Succesfully")
-        );
-      }
-
-      //toggling signin navbar
-
-      const loginUser = JSON.parse(localStorage.getItem("active_user"));
-      // console.log(loginUser);
-      const loginbtn = document.querySelector(".register")
-      if (loginUser == null) {
-      }
-      else if (loginUser !== false) {
-        loginbtn.style.display = "none";
-        const profile = document.createElement("button");
-        profile.setAttribute("class", "login");
-        profile.innerText = "My Profile"
-        profile.position = "relative";
-        profile.style.width = "120px";
-        profile.style.left = "-150px";
-        profile.style.top = "-60px";
-        // profile.style.font-weight="700px";
-        profile.addEventListener("click", () => {
-          window.location.href = "./html/profilepage.html";
-
-        });
-        document.querySelector(".main").append(profile)
-      }
-      else {
-        loginbtn.style.display = "block"
-      }
-
-      //validation
-      const login_detail = localStorage.getItem("active_user");
-      // console.log(login_detail);
-      const item_card = document.getElementById("vegetable_button");
-      item_card.addEventListener("click", (el) => {
-        if (login_detail == "false") {
-          alert("To view and buy products you have to Login");
-        }
-        else {
-          window.location.href = "./html/veges.html"
-        }
-      })
-
-      //cartcount
-
-
-      const cart_sample = JSON.parse(localStorage.getItem("cart"));
-      const user = JSON.parse(localStorage.getItem("active_user"));
-
-      const cartCount = [];
-      cart_sample.forEach((e) => {
-        if (e.email == user.email) {
-          cartCount.push(e);
-        }
-      });
-
-      const co = cartCount.length
-
-      // console.log(co)
-      const counting = document.getElementById("cartcount");
-      counting.innerHTML = cartCount.length;
-
-      //cart validation
-
-      const cartdetail_display = localStorage.getItem("active_user");
-
-      // console.log(kkk);
-      const item_cart = document.getElementById("cart_icon");
-      item_cart.addEventListener("click", (e) => {
-
-        if (cartdetail_display.status == false) {
-          alert("Hii");
-        }
-        else {
-          window.location.href = "../html/cart.html"
-        }
-      })
-    </script>
+		function showSignInPopup() {
+			
+			alert("You are not signed in. Please sign in to continue.");
+		}
+	</script>
 
 </body>
 </html>

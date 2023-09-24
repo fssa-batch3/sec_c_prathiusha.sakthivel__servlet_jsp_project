@@ -3,8 +3,10 @@
 <%@page import="com.fssa.greenfarm.model.OrderedProduct"%>
 <%@ page import="com.fssa.greenfarm.model.Order"%>
 <%@ page import="com.fssa.greenfarm.model.Product"%>
+<%@ page import="com.fssa.greenfarm.model.User"%>
 <%@ page import="com.fssa.greenfarm.service.OrderedProductService"%>
 <%@ page import="com.fssa.greenfarm.DAO.ProductDAO"%>
+<%@ page import="com.fssa.greenfarm.DAO.UserDAO"%>
 <%@page import="java.util.ArrayList"%>
 
 
@@ -12,7 +14,83 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>order history</title>
-<link rel="stylesheet" href="../assets/css/orderhistory.css">
+<link rel="stylesheet" href="./assets/css/orderhistory.css">
+<style>
+body {
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS',
+		sans-serif;
+}
+
+#order-history {
+	height: auto;
+	width: auto;
+	border: #000000e9 solid 2px;
+}
+
+#order-history h1 {
+	text-align: center;
+}
+
+.order-his {
+	margin-top: 4%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.or-contain {
+	width: 1200px;
+	display: flex;
+	background-color: white;
+	box-shadow: 2px 2px 6px rgba(162, 157, 157, 0.753);
+	border-radius: 6px;
+	padding: 5px 30px;
+	margin-left: 50px;
+	margin-top: 5%;
+	justify-content: space-between;
+	align-items: center;
+	border-left: #6c9135 solid 10px;
+	/* border-right: #a576f5 solid 10px; */
+	/* align-items:normal; */
+}
+
+.oeder-address {
+	width: 300px;
+	height: auto;
+	padding: 20px;
+	/* border: #000000e9 solid 2px; */
+}
+
+#pincode {
+	font-weight: 600;
+}
+
+.or-contain img {
+	padding: 10px;
+	height: 150px;
+	width: 150px;
+}
+
+.order-dtitail {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.order-dtitail h4 {
+	width: 200px;
+	border: #000000e9 solid 2px;
+}
+/* This is user container */
+#profile-page {
+	margin-top: 5%;
+}
+
+.user-container {
+	margin-top: 5px;
+	min-height: calc(100vh - 90px);
+}
+</style>
 </head>
 <body>
 	<header>
@@ -26,88 +104,69 @@
 			</div>
 
 			<ul class="main">
-				<li class="down"><a class="hdg" href="../index.html">Home </a>
+				<li class="down"><a class="hdg" href="./pages/home.jsp">Home </a>
 				</li>
 
-				<li class="down"><a class="hdg" href="../html/about.html">About</a>
+				<li class="down"><a class="hdg" href="./pages/home.jsp">About</a>
 				</li>
 
-				<li><a class="hdg" href="../html/sellerpage.html">Seller</a></li>
+				<li><a class="hdg" href="./pages/seller.html">Seller</a></li>
 
 			</ul>
 		</div>
+
 	</header>
 
 	<main>
 		<%
 		ArrayList<Order> orderDetails = (ArrayList<Order>) request.getAttribute("orderDetails");
-		System.out.print(orderDetails.get(0) + "got");
-	
+		System.out.print(orderDetails.size() + "got");
+
+		Product product2 = new Product();
+
 		for (Order order : orderDetails) {
 
 			for (OrderedProduct product : order.getOrderedProducts()) {
 
 				Product product1 = ProductDAO.getProductById(product.getProductId());
 		%>
-		<!-- borderbox -->
-		<h1>Purchase History</h1>
 
-		<div class="outer_div" id="outer_div">
-			<div class="get">
-				<p>Your Order is Empty</p>
+		<!-- This is order history -->
+		<div id="order_history" class="display_cls">
+
+			<div class="order-his">
+				<div class="or-contain">
+					<div class="order-pic">
+						<img id="order-image1" src="<%=product1.getImageURL()%>">
+					</div>
+					<div class="order-ditail">
+						<h4 id="order-name"><%=product.getProductname()%></h4>
+
+					</div>
+					<div class="order-price">
+						<h4 id="order-price"><%=product.getProductPrice()%></h4>
+					</div>
+					<div class="oeder-address">
+						<h4 id="order-price"><%=product.getQuantity()%></h4>
+
+					</div>
+					<div class="button">
+					<form action="<%=request.getContextPath() %>/CancelOrder?order_id=<%=order.getOrder_id()%>">
+						
+							<button type="submit"
+								style="border: 2px solid #6c9135; height: 30px; width: 150px; background-color: #6c9135; color: white; margin-left: -100px">
+								Cancel Order</button>
+						</form>
+					</div>
+				</div>
 			</div>
-			<div class="borderbox">
-
-				<div class="tomato">
-					<img class="tomato1" src="https://iili.io/JJfMgef.jpg" alt="img">
-					<h2><%=product.getProductname()%></h2>
-					<h3><%=product.getProductPrice()%></h3>
-					<h4><%=product.getQuantity()%></h4>
-
-				</div>
-
-				<div class="price">
-					<h2 id="product">Price Details:-</h2>
-					<div class="order">
-						<p id="order">Order Price : &#8377;<%=product.getProductPrice() %></p>
-						<p id="total_count1">Total:<%=product.getTotalAmount()%></p>
-					</div>
-
-					<div class="cancel">
-						<button id="cancelbutton">Cancel Order</button>
-					</div>
-
-				</div>
-
-			</div>
-			<%
-			}
-			}
-			%>
-			<div class="profile_box">
-				<div class="profile_image">
-					<img id="user_profile" src="https://iili.io/JJfVME7.jpg"
-						alt="profile image">
-					<p id="user_name">Prathiusha Sakthivel</p>
-				</div>
-				<div class="details">
-					<div class="email">
-						<p>Email</p>
-						<p>prathiusha@gmail.com</p>
-					</div>
-					<div class="address">
-						<p>Address</p>
-						<p>1/243-KKR nagar,Main road,chennai.</p>
-					</div>
-					<div class="phone">
-						<p>Phone</p>
-						<p>9876543210</p>
-					</div>
-				</div>
-
-			</div>
-
 		</div>
+		<%
+		}
+		}
+		%>
+
+
 	</main>
 
 

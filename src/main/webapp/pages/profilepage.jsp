@@ -8,125 +8,119 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
- <title>Document</title>
- <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/profilepage.css">
+<title>Document</title>
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/assets/css/profilepage.css">
 <style>
-
 </style>
 </head>
 <body>
-    <!-- outer_container -->
-    <div class="outer_container">
+	<!-- outer_container -->
+	<div class="outer_container">
 
-        <form id="profile_form" action="UpdateProfile" method="get">
+		<form id="profile_form" action="UpdateProfile" method="get">
 
-            <!-- right_container -->
-            <div class="right_container">
-                <div class="profile_image">
-                    <!-- Profile image here -->
-                    <img class="profile" src="https://iili.io/JHFFytp.jpg" id="photo" alt="profile_image" >
-                    <input type="file" id="file">
-                    <label for="file" id="uploadbtn">Change Profile</label>
-                </div>
-                <!-- Edit-Profile -->
-                <div class="edit">
-                    <button id="edit">Edit-Profile</button>
-                </div>
-                <br>
-                <br>
-                <!-- Save -->
-                <div>
-                    <button type="submit" id="save_button">Save</button>
-                </div>
-                <br>
-                <br>
-                <div>
-                    <button type="submit" id="home">
-                        <a>Home</a>
-                    </button>
-                </div>
-                <br>
-                <br>
-                <div>
-                    <button onclick="logout()" id="next">
-                        <a href="#">Log-out</a>
-                    </button>
-                </div>
-            </div>
+			<!-- right_container -->
+			<div class="right_container">
+				<div class="profile_image">
+					<!-- Profile image here -->
+					<img class="profile" src="https://iili.io/JHFFytp.jpg" id="photo"
+						alt="profile_image"> <input type="file" id="file">
+					<label for="file" id="uploadbtn">Change Profile</label>
+				</div>
+				<!-- Edit-Profile -->
+				<div class="edit">
+					<button id="edit">Edit-Profile</button>
+				</div>
+				<br> <br>
+				<!-- Save -->
+				<div>
+					<button type="submit" id="save_button">Save</button>
+				</div>
+				<br> <br>
+				<div>
+					<button type="submit" id="home">
+						<a>Home</a>
+					</button>
+				</div>
+				<br> <br>
+				<div>
+					<button onclick="logout()" id="next">
+						<a href="<%=request.getContextPath()%>/LogoutServlet">Log-out</a>
+					</button>
+				</div>
+			</div>
 
-            <div class="form_div">
-                <!-- heading -->
-                <h1>My Account</h1>
-                <%User user=(User)request.getAttribute("user"); 	      %>
+			<div class="form_div">
+				<!-- heading -->
+				<h1>My Account</h1>
+				<%
+				User user = (User) request.getAttribute("user");
+				%>
 
-                <!-- fname and lname -->
-                <div class="profile_form">
-                    <!-- Display user details here -->
-                    <div class="fname_container">
-                        <label>Firstname</label>
-                        <br>
-                        <input name="firstname" disabled type="text" id="firstname" pattern="[A-Za-z]{1,35}"  value="<%=user.getFirstname() %>">
-                    </div>
+				<!-- fname and lname -->
+				<div class="profile_form">
+					<!-- Display user details here -->
+					<div class="fname_container">
+						<label>Firstname</label> <br> <input name="firstname"
+							disabled type="text" id="firstname" pattern="[A-Za-z]{1,35}"
+							value="<%=user.getFirstname()%>">
+					</div>
 
-                    <div class="lname_container">
-                        <label>Last name</label>
-                        <br>
-                        <input name="lastname" disabled type="text" id="lastname" pattern="[A-Za-z]{1,35}" value="<%=user.getLastname()%>">
-                    </div>
-                </div>
+					<div class="lname_container">
+						<label>Last name</label> <br> <input name="lastname" disabled
+							type="text" id="lastname" pattern="[A-Za-z]{1,35}"
+							value="<%=user.getLastname()%>">
+					</div>
+				</div>
 
-                <!-- email -->
-                <div class="email_container">
-                    <label>Email</label>
-                    <br>
-                    <input name="email" disabled type="email" id="email" disabled value="<%=user.getEmail() %>">
-                </div>
+				<!-- email -->
+				<div class="email_container">
+					<label>Email</label> <br> <input name="email" disabled
+						type="email" id="email" disabled value="<%=user.getEmail()%>">
+				</div>
 
-                <!-- city and country -->
-                <div class="profile_form2">
-                    <!-- Display city and state here -->
-                    <div class="city_container">
-                        <label>City</label>
-                        <br>
-                        <input type="text" id="city" required="true" >
-                    </div>
+				<!-- city and country -->
+				<div class="profile_form2">
+					<!-- Display city and state here -->
+					<div class="city_container">
+						<label>City</label> <br> <input type="text" id="city"
+							required="true">
+					</div>
 
-                    <div class="country_container">
-                        <label>State</label>
-                        <br>
-                        <input disabled type="text" id="country" required="true" >
-                    </div>
-                </div>
+					<div class="country_container">
+						<label>State</label> <br> <input disabled type="text"
+							id="country" required="true">
+					</div>
+				</div>
 
-                <!-- address -->
-                <div class="address_container">
-                    <label>Address</label>
-                    <br>
-                    <input disabled type="text" id="address" required="true" >
-                </div>
+				<!-- address -->
+				<div class="address_container">
+					<label>Address</label> <br> <input disabled type="text"
+						id="address" required="true">
+				</div>
 
-                <!-- occupation and phonenumber -->
-                <div class="profile_form3">
-                    <!-- Display occupation and mobile number here -->
-                    <div class="occupation_container">
-                        <label>Occupation</label>
-                        <br>
-                        <input disabled type="text" id="occupation" required="true">
-                    </div>
+				<!-- occupation and phonenumber -->
+				<div class="profile_form3">
+					<!-- Display occupation and mobile number here -->
+					<div class="occupation_container">
+						<label>Occupation</label> <br> <input disabled type="text"
+							id="occupation" required="true">
+					</div>
 
-                    <div class="number_container">
-                        <label>MobileNumber</label>
-                        <br>
-                        <input disabled type="telephone" id="number" maxlength="10" minlength="10" required="true" >
-                    </div>
-                </div>
-            </div>
-        </form>
-    </div>
+					<div class="number_container">
+						<label>MobileNumber</label> <br> <input disabled
+							type="telephone" id="number" maxlength="10" minlength="10"
+							required="true">
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
 </body>
 
 
-    <script>
+<script>
 
         let user_data = JSON.parse(localStorage.getItem("user_records")) ?? [];// this is user object
 

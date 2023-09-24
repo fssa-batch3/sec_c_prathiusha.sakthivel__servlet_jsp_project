@@ -20,23 +20,33 @@
 		if (errorMsg != null) {
 		%>
 		<p class="errormsg"
-			style="position: relative; left: 160px; top: 55px; color: red; font-weight: bold;"><%=errorMsg%></p>
+			style="position: relative; left: 165px; top: -30px; color: red; font-weight: bold;"><%=errorMsg%></p>
 		<%
 		}
 		%>
 
-
+		<%
+		String errorMsg2 = (String) request.getParameter("error2");
+		if (errorMsg2 != null) {
+		%>
+		<p class="errormsg2"
+			style="position: relative; left: 200px; top: 80px; color: red; font-weight: bold;"><%=errorMsg2%></p>
+		<%
+		}
+		%>
 		<form id="loginpage" action="LoginServlet" method="post">
 
 			<div class="mhd">
 
 				<img class="img" src="https://iili.io/Hy3dOH7.png" height="110px"
-					width="210px" alt="img"> 
-				<h2>Log-in  Account</h2>
+					width="210px" alt="img">
+				<h2>Log-in Account</h2>
 				<p class="para1">Email</p>
+
 				<input name="email" type="email" id="email" required>
 				<p class="para2">Password</p>
 				<input name="password" type="password" id="password" required>
+
 				<button class="but" type="submit">Log-in</button>
 
 				<div class="or">

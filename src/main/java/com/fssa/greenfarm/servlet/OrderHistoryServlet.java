@@ -45,7 +45,7 @@ public class OrderHistoryServlet extends HttpServlet {
 			OrderedProductService orderedproductservice = new OrderedProductService();
 			List<Order> orderDetails=orderedproductservice.getOrderById(userId);
 			request.setAttribute("orderDetails", orderDetails);
-			RequestDispatcher requestDispatcher = request.getRequestDispatcher("./orderhistory.jsp");
+			RequestDispatcher requestDispatcher = request.getServletContext().getRequestDispatcher("/orderhistory.jsp");
 			requestDispatcher.forward(request, response);
 		} catch (DAOException|SQLException | ServiceException  e) {
 			System.out.println("Getting order details failed");

@@ -25,22 +25,18 @@ public class UpdateProfile extends HttpServlet {
 			throws ServletException, IOException {
 		UserService userService = new UserService();
 		HttpSession session = request.getSession(false);
-		// String firstname = (String) session.getAttribute("firstname");
-		// String lastname = (String) session.getAttribute("lastname");
 		String email = (String) session.getAttribute("email");
 		System.out.print(email);
 		try {
 			// Retrieve user data by email from the service
 			User user = userService.getUserByEmail(email);
 			
-			System.out.println(user.getEmail()+"helo");
-			System.out.println(user.getFirstname()+"hi");
-			
 			if (user != null) {
 				// If the user exists, set the user object as an attribute and forward to the
 				// profilepage.jsp
 				request.setAttribute("user", user);
-				request.getRequestDispatcher("/pages/profilepage.jsp").forward(request, response);
+				request.getRequestDispatcher(""
+						+ "/pages/profilepage.jsp").forward(request, response);
 			} else {
 				System.out.println("null user");
 			}

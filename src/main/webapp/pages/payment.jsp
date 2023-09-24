@@ -24,17 +24,17 @@
 		<div class="menu-bar">
 
 			<div class="main">
-				<a href="../index.html">Home </a>
+				<a href="home.jsp">Home </a>
 
 
 				<div class="dropdown">
 
-					<a class="product" href="../html/veges.html">Products</a>
+					<a class="product" href="http://localhost:8080/greenfarm-web/GetAllProductDetailsServlet">Products</a>
 
 				</div>
 
-				<a href="../html/sellerpage.html">Seller</a> <a
-					href="../html/profilepage.html">Profile</a>
+				<a href="../pages/seller.html">Seller</a>
+				 <a href="<%=request.getContextPath()%>/UpdateProfile" >Profile</a>
 
 			</div>
 		</div>

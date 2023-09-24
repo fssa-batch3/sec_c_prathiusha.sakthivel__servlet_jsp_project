@@ -79,7 +79,7 @@
           <input type="number" id="ToRange" name="ToRange">
         </div>
 
-        <button type="submit" class="delete">Search</button>
+        <button type="submit" class="delete">Filter</button>
       </form>
     </div>
   </main>

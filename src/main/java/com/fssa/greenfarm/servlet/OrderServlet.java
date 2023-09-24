@@ -81,7 +81,7 @@ public class OrderServlet extends HttpServlet {
 			Logger.info("Order Failed"+e.getMessage());
 			e.printStackTrace();
 		}
-		RequestDispatcher rd = request.getRequestDispatcher("pages/home.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("pages/orderplaced.jsp");
 		rd.forward(request, response);
 		
 	

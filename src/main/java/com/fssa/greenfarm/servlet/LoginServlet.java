@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.fssa.greenfarm.DAO.UserDAO;
 import com.fssa.greenfarm.exception.DAOException;
 import com.fssa.greenfarm.exception.InvalidUserDetailException;
 import com.fssa.greenfarm.model.User;
@@ -48,19 +50,26 @@ public class LoginServlet extends HttpServlet {
 		try {
 
 			if (userservice.userLogin(email, password)) {
+				UserDAO userdao = new UserDAO();
 				HttpSession session = request.getSession(true);
+				User userss = userdao.getUserByEmail(user.getEmail());
+		     	session.setAttribute("userss",userss);
 				session.setAttribute("email", email);
 				session.setAttribute("loggedInSuccess", true);
 				request.getRequestDispatcher("pages/home.jsp").forward(request, response);
 			}else {
-				response.sendRedirect(request.getContextPath() + "/login.jsp?error=Login Failed");
+				  UserDAO userdao = new UserDAO();
+		        if (!userdao.emailExists(email)) {
+		        	RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher ("/login.jsp?error=Invalid Email");
+		        	dispatcher.forward(request, response);
+		        } 
+				response.sendRedirect(request.getContextPath() + "/login.jsp?error2=Invalid Password");
 			}
 
 		} catch (ServiceException | InvalidUserDetailException | DAOException | SQLException e) {
-			e.printStackTrace();
-			out.print(e.getMessage());
+				e.printStackTrace();
+				
 //			response.sendRedirect("/login.jsp?error=" + e.getMessage());
-			
 			
 			// RequestDispatcher dispatcher =
 			// request.getRequestDispatcher(request.getContextPath() + "/pages/login.jsp");
@@ -72,3 +81,5 @@ public class LoginServlet extends HttpServlet {
 	}
 
 }
+
+

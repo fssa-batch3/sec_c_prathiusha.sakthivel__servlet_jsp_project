@@ -34,12 +34,12 @@ form {
 }
 
 .para2 {
-	margin-top: -30px;
+	margin-top: -10px;
 	margin-right: 250px;
 }
 
 .but {
-	margin-top: 20px;
+	margin-top: 30px;
 	height: 40px;
 	width: 320px;
 	margin-right: 10px;
@@ -119,11 +119,7 @@ a {
 .or a {
 	font-size: 22px;
 }
-.errormsg{
-	position:relative;
-	left:150px;
-	top:50px;
-}
+
 @media screen and (max-width:400px) {
 	body {
 		margin: 0%;

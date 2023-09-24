@@ -12,11 +12,11 @@
     <div class="menu-bar">
 
       <div class="main">
-        <a href="../index.html">Home </a>
+        <a href="./home.jsp">Home </a>
 
-        <a class="about" href="../html/about.html">About </a>
+        <a class="about" href="./about.jsp">About </a>
 
-        <a class="about" href="../html/sellerpage.html">Seller</a>
+        <a class="about" href="../pages/seller.html">Seller</a>
 
         <a class="register" href="#"></a>
 
