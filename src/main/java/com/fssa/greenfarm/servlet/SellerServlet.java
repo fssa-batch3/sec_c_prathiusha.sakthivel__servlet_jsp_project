@@ -61,7 +61,7 @@ public class SellerServlet extends HttpServlet {
 	
 		if(added) {
 			System.out.println("added");
-			response.sendRedirect(request.getContextPath()+"/pages/sellerlogin.jsp");
+			response.sendRedirect(request.getContextPath()+"/sellerlogin.jsp");
 			
 			
 		}
@@ -73,7 +73,7 @@ public class SellerServlet extends HttpServlet {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 			
-			response.sendRedirect(request.getContextPath()+"/pages/sellerregister.jsp");
+			response.sendRedirect(request.getContextPath()+"/sellerregister.jsp");
 		} 
 		
 	

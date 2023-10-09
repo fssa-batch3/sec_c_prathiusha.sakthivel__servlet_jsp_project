@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 
+<%@page import="com.fssa.greenfarm.logger.Logger"%>
 <%@page import="com.fssa.greenfarm.model.OrderedProduct"%>
 <%@ page import="com.fssa.greenfarm.model.Order"%>
 <%@ page import="com.fssa.greenfarm.model.Product"%>
@@ -104,8 +105,8 @@ body {
 			</div>
 
 			<ul class="main">
-				<li class="down"><a class="hdg" href="./pages/home.jsp">Home </a>
-				</li>
+				<li class="down"><a class="hdg" href="./pages/home.jsp">Home
+				</a></li>
 
 				<li class="down"><a class="hdg" href="./pages/home.jsp">About</a>
 				</li>
@@ -129,6 +130,9 @@ body {
 			for (OrderedProduct product : order.getOrderedProducts()) {
 
 				Product product1 = ProductDAO.getProductById(product.getProductId());
+				int val = product.getStatus();
+				Logger.info(("val: " + val));
+				if (1 == val) {
 		%>
 
 		<!-- This is order history -->
@@ -140,19 +144,25 @@ body {
 						<img id="order-image1" src="<%=product1.getImageURL()%>">
 					</div>
 					<div class="order-ditail">
+						<h4 id="order-name">Product Name:</h4>
+					
 						<h4 id="order-name"><%=product.getProductname()%></h4>
 
 					</div>
 					<div class="order-price">
-						<h4 id="order-price"><%=product.getProductPrice()%></h4>
+						<h4 id="order-name">Total Price:</h4>
+						<h4 id="order-price"><%=product.getTotalAmount()%></h4>
 					</div>
 					<div class="oeder-address">
+						<h4 id="order-name">Product Quantity:</h4>
 						<h4 id="order-price"><%=product.getQuantity()%></h4>
 
 					</div>
 					<div class="button">
-					<form action="<%=request.getContextPath() %>/CancelOrder?order_id=<%=order.getOrder_id()%>">
-						
+						<form
+							action="<%=request.getContextPath()%>/CancelOrder?orderId=<%=order.getOrder_id()%>"
+							method="post">
+
 							<button type="submit"
 								style="border: 2px solid #6c9135; height: 30px; width: 150px; background-color: #6c9135; color: white; margin-left: -100px">
 								Cancel Order</button>
@@ -164,10 +174,33 @@ body {
 		<%
 		}
 		}
+		}
 		%>
 
 
 	</main>
+
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	
+	<script>
+	
+	<%String errorMsg = (String) request.getAttribute("success");
+   
+          if (errorMsg != null) {%>
+		
+		<%System.out.print(errorMsg + "inside");%>
+		
+		swal("Success!","<%=errorMsg%>", "success");
+		
+		setTimeout(() => {
+			console.log("df");
+			window.location.href="OrderHistoryServlet";
+		}, 1000);//code will excute after 1 second because of the setTimeout func()
+		
+	<%}%>
+	
+	</script>
+
 
 
 </body>

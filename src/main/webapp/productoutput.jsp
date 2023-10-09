@@ -8,7 +8,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
-<link rel="stylesheet" href="./assets/css/productoutput.css">
+<link rel="stylesheet" href="assets/css/productoutput.css">
 
 </head>
 
@@ -20,8 +20,8 @@
 	<div class="menu-bar">
 
 		<ul class="main">
-			<li class="down"><a class="hdg" href="./pages/home.jsp">Home </a></li>
-			<li class="down"><a class="hdg" href="./pages/about.jsp">About</a>
+			<li class="down"><a class="hdg" href="home.jsp">Home </a></li>
+			<li class="down"><a class="hdg" href="about.jsp">About</a>
 
 			</li>
 				<li><a class="hdg" href="<%=request.getContextPath()%>/UpdateProfile" >Profile</a></li>
@@ -39,6 +39,8 @@
 		System.out.print("failed");
 	    e.printStackTrace();
 	}
+	
+	
 	%>
 
 	<p><%=id%></p>
@@ -52,7 +54,7 @@
 			<h4 id="quantity_of_product">Price: <%= product.getPrice() %></h4>
 			<button class="btn1 btn-decrement" id="decrement">-</button>
 			<input class="btn-input" data-keyword=<%= product.getPrice()%> id="quantity" type="text"
-				value="1">
+				value="1" >
 			<button id="increment" class="btn1 btn-increment">+</button>
 			<div class="product-ratings"></div>
 			<div class="btn"></div>
@@ -61,78 +63,14 @@
 				<a href="pages/cart.jsp?id=<%=product.getId()%>" id="add-to-cart">Add to Cart</a>
 			</button>-->
 			<button id="buybutton" >
-				<a href="pages/payment.jsp?id=<%=product.getId()%>">Buy Now</a>
+			Buy Now
+				<!-- <a href="payment.jsp?id=<%=product.getId()%>">Buy Now</a> -->
 			</button>
 		</div>
 	
 	</div>
 	
-	<script >
-
-
-    let increment1 = document.getElementById("increment")
-    let pricelist = document.getElementById("quantity_of_product");
-    let gramquantity=document.querySelector("gramquantity")
-    console.log(increment1)
-    let decrement1 = document.getElementById("decrement");
-
-
-    let maxbtn = document.getElementById("increment")
-    let minbtn = document.getElementById("decrement")
-    let input = document.querySelector("input")
-    let price = document.getElementById("quantity_of_product")
-    let gram = document.getElementById("gram")
-    let id = input.dataset.keyword
-	console.log(id);
-
-
-    maxbtn.addEventListener("click",function () {
-      
-
-        let qty = parseFloat(input.value);
-        console.log(qty)
-        qty = qty + 1
-        console.log(qty)
-        input.value = qty
-        console.log(qty)
-        console.log(input.value)
-        let gram_value = 250 * input.value
-        console.log(gram_value,"gr")
-        
-        price.innerText = "Price : "+(id * input.value)
-        	console.log(price.innerText)
-        if(gram_value >= 250){
-          gram.innerText = "Quantity: "+gram_value+"g"
-        	  console.log(gram_value)
-        }
-        if(gram_value >= 1000){
-          gram.innerText = "Quantity: "+(gram_value/1000)+"kg"
-        }
-
-
-    })
-     //this event for decrease quantity value
-        minbtn.addEventListener("click",function () {
-            if (input.value !== "1") {
-         let qty = parseFloat(input.value);
-         qty = qty - 1
-         input.value = qty
-         let gram_value = 250 * input.value
-
-         price.innerText = "Price : "+(id * input.value)
-
-         if(gram_value >= 250){
-          gram.innerText = "Quantity: "+gram_value+"g"
-        }
-        if(gram_value >= 1000){
-          gram.innerText = "Quantity: "+(gram_value/1000)+"kg"
-        }
-            }
-            
-            
-        })	
-	</script>
-	
+	<script type="text/javascript" src="assets/js/productoutput.js"></script>
 </body>
 
 </html>

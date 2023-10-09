@@ -20,7 +20,7 @@ import com.fssa.greenfarm.service.UserService;
 public class UpdateProfile extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	@SuppressWarnings("unused")
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		UserService userService = new UserService();
@@ -30,13 +30,12 @@ public class UpdateProfile extends HttpServlet {
 		try {
 			// Retrieve user data by email from the service
 			User user = userService.getUserByEmail(email);
-			
+
 			if (user != null) {
 				// If the user exists, set the user object as an attribute and forward to the
 				// profilepage.jsp
 				request.setAttribute("user", user);
-				request.getRequestDispatcher(""
-						+ "/pages/profilepage.jsp").forward(request, response);
+				request.getRequestDispatcher("" + "profilepage.jsp").forward(request, response);
 			} else {
 				System.out.println("null user");
 			}

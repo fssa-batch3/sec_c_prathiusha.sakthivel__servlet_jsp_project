@@ -33,6 +33,14 @@ public class LoginServlet extends HttpServlet {
 		super();
 	}
 
+	
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	
+		doPost(req, resp);
+	}
+
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
@@ -42,7 +50,7 @@ public class LoginServlet extends HttpServlet {
 		String password = request.getParameter("password");
 
 		PrintWriter out = response.getWriter();
-
+		UserDAO userdao = new UserDAO();
 		User user = new User();
 		user.setEmail(email);
 		user.setPassword(password);
@@ -50,20 +58,21 @@ public class LoginServlet extends HttpServlet {
 		try {
 
 			if (userservice.userLogin(email, password)) {
-				UserDAO userdao = new UserDAO();
 				HttpSession session = request.getSession(true);
 				User userss = userdao.getUserByEmail(user.getEmail());
 		     	session.setAttribute("userss",userss);
 				session.setAttribute("email", email);
 				session.setAttribute("loggedInSuccess", true);
-				request.getRequestDispatcher("pages/home.jsp").forward(request, response);
+				request.getRequestDispatcher("home.jsp").forward(request, response);
 			}else {
-				  UserDAO userdao = new UserDAO();
+
 		        if (!userdao.emailExists(email)) {
-		        	RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher ("/login.jsp?error=Invalid Email");
+		        	RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp?error=Invalid Email");
 		        	dispatcher.forward(request, response);
-		        } 
-				response.sendRedirect(request.getContextPath() + "/login.jsp?error2=Invalid Password");
+		        } else {
+		        	response.sendRedirect(request.getContextPath() + "/login.jsp?error2=Invalid Password");
+		        }
+			
 			}
 
 		} catch (ServiceException | InvalidUserDetailException | DAOException | SQLException e) {

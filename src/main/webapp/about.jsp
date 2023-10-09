@@ -1,11 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
-<link rel="stylesheet" href="./assets/css/about.css">
+<link rel="stylesheet" href="assets/css/about.css">
 
 </head>
 <body>
@@ -19,10 +17,26 @@
 
 			<div class="main">
 				<a href="home.jsp">Home </a>
+			
+				<a href="./seller.html">Seller</a>
+
+		
+		
+		
+				<%
+				Boolean loggedIn = (Boolean) session.getAttribute("loggedInSuccess");
+				if (loggedIn != null && loggedIn) {
+				%>
+				<li class="register"><a href="<%=request.getContextPath()%>/UpdateProfile">Profile</a></li>
+				<%
+				} else {
+				%>
+				<li id="profile-btn"><a href="../signup.jsp">Sign-in</a></li>
+
+				<%
+				}
+				%>
 				
-				<a href="#">Seller</a>
-				
-				<a href="#">profile</a>
 
 			</div>
 		</div>

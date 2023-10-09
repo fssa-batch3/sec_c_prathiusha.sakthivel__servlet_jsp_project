@@ -26,9 +26,9 @@
 			</div>
 
 			<ul class="main">
-				<li class="down"><a class="hdg" href="./pages/home.jsp">Home
+				<li class="down"><a class="hdg" href="home.jsp">Home
 				</a></li>
-				<li class="down"><a class="hdg" href="./pages/about.jsp">About</a></li>
+				<li class="down"><a class="hdg" href="about.jsp">About</a></li>
 				<%
 				Boolean loggedIn = (Boolean) session.getAttribute("loggedInSuccess");
 				if (loggedIn != null && loggedIn) {
@@ -43,7 +43,7 @@
 				<%
 				}
 				%>
-				<li><a class="login" href="./pages/seller.html">Seller</a></li>
+				<li><a class="login" href="seller.html">Seller</a></li>
 
 
 			</ul>

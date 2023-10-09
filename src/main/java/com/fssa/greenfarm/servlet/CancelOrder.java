@@ -20,10 +20,11 @@ public class CancelOrder extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		 String orderIdStr = request.getParameter("order_id");
-	        //if (orderIdStr != null) {
+		 String orderIdStr = request.getParameter("orderId");
+		 
+	        if (orderIdStr != null) {
 	        	
 	            try {
 	            	
@@ -32,17 +33,19 @@ public class CancelOrder extends HttpServlet {
 	                
 	                orderService.cancelOrder(orderId);
 	                System.out.println("Deleted order Successfully");
-	                response.sendRedirect("pages/home.jsp");
-	                
+	                request.setAttribute("success", "Order Cancelled Successfully");
+					request.getRequestDispatcher("OrderHistoryServlet").forward(request, response);	                
 	            } catch ( DAOException | SQLException  e) {
+	            	
+	            	request.setAttribute("error", e.getMessage());
 	                System.out.println("Delete order failed");
-	                response.sendRedirect("OrderServlet");
+					request.getRequestDispatcher("OrderHistoryServlet").forward(request, response);	                
 	                e.printStackTrace();
 	            }
-	        //} else {
-	          //  System.out.println("Invalid order ID");
-	           // response.sendRedirect("OrderServlet");
-	        //}
+	        } else {
+	            System.out.println("Invalid order ID");
+	            response.sendRedirect("OrderServlet");
+	        }
 	    }
 	}
 

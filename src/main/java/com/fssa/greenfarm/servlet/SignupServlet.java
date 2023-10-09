@@ -47,7 +47,6 @@ public class SignupServlet extends HttpServlet {
 				    RequestDispatcher rd = request.getRequestDispatcher("./signup.jsp");
 				    rd.include(request, response);
 				} else {
-				    // Email doesn't exist, proceed with registration
 				    User user = new User();
 				    user.setFirstname(firstname);
 				    user.setLastname(lastname);

@@ -29,28 +29,37 @@ import com.google.protobuf.ServiceException;
 @WebServlet("/OrderHistoryServlet")
 public class OrderHistoryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-  
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		doGet(request, response);
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		String success = (String) request.getAttribute("success");
+
+
 		OrderService orderService = new OrderService();
 		HttpSession session = request.getSession(false);
 		String email = (String) session.getAttribute("email");
 		UserService userservice = new UserService();
-	
-		
+
 		int userId;
 		try {
-			User user=userservice.getUserByEmail(email);
+			User user = userservice.getUserByEmail(email);
 			userId = UserDAO.getUserIdByEmail(user.getEmail());
 			OrderedProductService orderedproductservice = new OrderedProductService();
-			List<Order> orderDetails=orderedproductservice.getOrderById(userId);
+			List<Order> orderDetails = orderedproductservice.getOrderById(userId);
 			request.setAttribute("orderDetails", orderDetails);
+			request.setAttribute("success", success);
 			RequestDispatcher requestDispatcher = request.getServletContext().getRequestDispatcher("/orderhistory.jsp");
 			requestDispatcher.forward(request, response);
-		} catch (DAOException|SQLException | ServiceException  e) {
+		} catch (DAOException | SQLException | ServiceException e) {
 			System.out.println("Getting order details failed");
 			e.printStackTrace();
-		} 
+		}
 	}
 
 }

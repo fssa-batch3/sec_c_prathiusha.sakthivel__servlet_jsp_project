@@ -37,9 +37,12 @@ public class OrderServlet extends HttpServlet {
  
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
+	
+		
 		OrderService orderService = new OrderService();
 		UserDAO userDaO= new UserDAO();
 		int productId = Integer.parseInt(request.getParameter("id"));
+		
 		System.out.println(productId);
 		String address = request.getParameter("address");
 		String city = request.getParameter("city");
@@ -49,6 +52,9 @@ public class OrderServlet extends HttpServlet {
 		String paymenttype = request.getParameter("rdo");
 		HttpSession session = request.getSession();
 		String email= (String) session.getAttribute("email");
+		int totalPrice = Integer.parseInt(request.getParameter("price"));
+		int quantity = Integer.parseInt(request.getParameter("quantity"));
+		
 		
 		Order order = new Order();
 		OrderedProduct orderProduct = new OrderedProduct();
@@ -61,15 +67,20 @@ public class OrderServlet extends HttpServlet {
 			int userId = UserDAO.getUserIdByEmail(user.getEmail());
 			orderProduct.setProductId(productId);
 			orderProduct.setProductname(product.getName());
+			
 			orderProduct.setProductPrice(product.getPrice());
-			orderProduct.setQuantity(1);
-			orderProduct.setTotalAmount(product.getPrice());
+			
+			orderProduct.setQuantity(quantity);
+			
+			orderProduct.setTotalAmount(totalPrice);
+			
 			productsList.add(orderProduct);
 			order.setAddress(address);
 			order.setOrderedProducts(productsList);
 			order.setCity(city);
 			order.setState(state);
 			order.setPincode(pincode);
+			
 			order.setPaymentmethod(PaymentMethod.CASHONDELIVERY);
 			order.setUser_id(userId);
 			order.setMobile_number(mobilenumber);
@@ -81,7 +92,8 @@ public class OrderServlet extends HttpServlet {
 			Logger.info("Order Failed"+e.getMessage());
 			e.printStackTrace();
 		}
-		RequestDispatcher rd = request.getRequestDispatcher("pages/orderplaced.jsp");
+		
+		RequestDispatcher rd = request.getRequestDispatcher("orderplaced.jsp");
 		rd.forward(request, response);
 		
 	

@@ -132,8 +132,8 @@ input:focus {
 
 h1 {
     position: relative;
-    left: 350px;
-    top: -520px;
+    left: 420px;
+    top: -680px;
 
 }
 
@@ -142,13 +142,13 @@ h1 {
     justify-content: space-evenly;
     position: relative;
     left: 150px;
-    top: -490px;
+    top: -650px;
 }
 
 .email_container {
     position: relative;
-    left: 345px;
-    top: -470px;
+    left: 428px;
+    top: -620px;
 }
 
 .email_container input {
@@ -161,13 +161,13 @@ h1 {
     justify-content: space-evenly;
     position: relative;
     left: 150px;
-    top: -440px;
+    top: -600px;
 }
 
 .address_container {
     position: relative;
-    left: 345px;
-    top: -410px;
+    left: 420px;
+    top: -580px;
 }
 
 .address_container input {
@@ -179,8 +179,8 @@ h1 {
     display: flex;
     justify-content: space-evenly;
     position: relative;
-    left: 150px;
-    top: -390px;
+    left: 320px;
+    top: -550px;
 }
 
 a {
