@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fssa.greenfarm.exception.DAOException;
+import com.fssa.greenfarm.logger.Logger;
 import com.fssa.greenfarm.service.OrderService;
 
 /**
@@ -32,18 +33,18 @@ public class CancelOrder extends HttpServlet {
 	                OrderService orderService = new OrderService();
 	                
 	                orderService.cancelOrder(orderId);
-	                System.out.println("Deleted order Successfully");
+	                Logger.info("Deleted order Successfully");
 	                request.setAttribute("success", "Order Cancelled Successfully");
 					request.getRequestDispatcher("OrderHistoryServlet").forward(request, response);	                
 	            } catch ( DAOException | SQLException  e) {
 	            	
 	            	request.setAttribute("error", e.getMessage());
-	                System.out.println("Delete order failed");
+	                Logger.info("Delete order failed");
 					request.getRequestDispatcher("OrderHistoryServlet").forward(request, response);	                
 	                e.printStackTrace();
 	            }
 	        } else {
-	            System.out.println("Invalid order ID");
+	        	Logger.info("Invalid order ID");
 	            response.sendRedirect("OrderServlet");
 	        }
 	    }

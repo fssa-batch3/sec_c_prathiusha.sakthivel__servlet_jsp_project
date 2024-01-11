@@ -1,12 +1,3 @@
-<%@page import="com.fssa.greenfarm.DAO.UserDAO"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-
-<%@ page import="com.fssa.greenfarm.model.Product"%>
-<%@ page import="com.fssa.greenfarm.model.User"%>
-<%@ page import="com.fssa.greenfarm.service.ProductService"%>
-<%@ page import="com.fssa.greenfarm.DAO.ProductDAO"%>
-<%@page import="java.sql.SQLException"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,11 +7,8 @@
 	integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
 	crossorigin="anonymous" referrerpolicy="no-referrer">
 <link rel="stylesheet" href="assets/css/payment.css">
-
 <title>Insert title here</title>
-
 </head>
-
 <body>
 	<header>
 
@@ -49,34 +37,11 @@
 
 	</header>
 <body>
-	<%
-	UserDAO userDaO= new UserDAO();
 
-	int productId = Integer.parseInt(request.getParameter("id"));
-	System.out.println(productId);
-	
-	float price = Float.parseFloat(request.getParameter("totalPrice"));
-	
-	int quantity = Integer.parseInt(request.getParameter("quantity"));
-	
-	
-	
-
-	String email= (String) session.getAttribute("email");
-	Product product = ProductDAO.getProductById(productId);
-	User user = userDaO.getUserByEmail(email);
-	System.out.print(user+"user");
-	String userName = "";
-	 email = "";
-	if (user!=null) {
-		 userName = user.getFirstname()+user.getLastname();
-		 email = user.getEmail();
-	}
-	%>
 	<div class="container">
 
 		<form id="payment_details"
-			action="<%=request.getContextPath()%>/OrderServlet?id=<%=productId%>&quantity=<%=quantity%>&price=<%=price%>" method="post" onsubmit="return validateForm()">
+			action="" method="post" onsubmit="return validateForm()">
 
 			<div class="row">
 
@@ -116,16 +81,7 @@
 				<div class="col">
 
 					<h3 class="title">payment</h3>
-					<!--<input type="radio" class="payment_option" id="upi" name="rdo"
-						value="upi" required><span class="span1">UPI</span> <img
-						class="labelimg1" src="https://iili.io/JHmCLEN.png" height="50px"
-						width="50px" alt="img">
-					<div class="inputBox">
-						<span class="span2"><input type="radio" id="expand"
-							name="rdo">cards accepted :</span> <img
-							src="https://iili.io/JHmBNUX.png" alt="">
-					</div>
-  -->
+			
 					<input type="radio" class="payment_option" id="cashondelivery"
 						name="rdo" value="cash_on_delivery" required><span
 						class="span3">Cash on Delivery</span> <img class="labelimg2"
@@ -144,13 +100,13 @@
 		<h1 class="ordersummary">Order Summary</h1>
 		<div class="box_div">
 			<p class="product1">Product:</p>
-			<img class="tomato" src="<%=product.getImageURL()%>" alt="image">
+			<img class="tomato" src="" alt="image">
 			<p class="name1">Name:</p>
-			<h1 class="titlename"><%=product.getName()%></h1>
+			<h1 class="titlename"></h1>
 			<p class="price">Price:</p>
-			<h2 class="amount" id="price"><%=product.getPrice() %></h2>
+			<h2 class="amount" id="price"></h2>
 		    <p class="price">Quantity:</p>
-            <h2 class="amount" id="gram"><%=product.getQuantity() %></h2>
+            <h2 class="amount" id="gram"></h2>
 		</div>
 
 	</div>
@@ -204,8 +160,5 @@
     }
 </script>
 
-
-
 </body>
-
 </html>

@@ -56,12 +56,7 @@
 					</p>
 				</div>
 
-				<!-- icon -->
-				<div class="icon">
-					<i class="fa-brands fa-facebook"></i> <i
-						class="fa-brands fa-instagram"></i> <i
-						class="fa-brands fa-linkedin"></i>
-				</div>
+				
 			</div>
 		</form>
 	</div>

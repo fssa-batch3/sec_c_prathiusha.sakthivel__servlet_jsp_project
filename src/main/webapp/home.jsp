@@ -26,43 +26,38 @@
 
 				<div class="dropdown">
 
-					<a class="product" href="#">Products</a>
+					<a class="product"
+						href="http://localhost:8080/greenfarm-web/GetAllProductDetailsServlet">Products</a>
 
+					<!--  -->
 					<div class="dropdown-content">
-						<button>
-							<a href="http://localhost:8080/greenfarm-web/GetAllProductDetailsServlet">Vegetables</a>
-						</button>
-						<a class="fruits" href="#">Fruits</a>
-					</div>
+
+						<!--  <a class="fruits" href="#">Fruits</a>-->
+					</div> 
 				</div>
 
-				<a class="login" href="seller.html">Seller</a>
-
-
+				<!--<a class="login" href="seller.html">Seller</a>-->
 
 
 				<%
 				Boolean loggedIn = (Boolean) session.getAttribute("loggedInSuccess");
 				if (loggedIn != null && loggedIn) {
 				%>
-				<li class="register"><a href="<%=request.getContextPath()%>/UpdateProfile">Profile</a></li>
-				
-				<a href="<%=request.getContextPath()%>/OrderHistoryServlet"> <i id="icon"
-					class="fa-sharp fa-solid fa-bars"></i>
-				<%
+				<li class="register"><a
+					href="<%=request.getContextPath()%>/UpdateProfile">Profile</a></li> <a
+					href="<%=request.getContextPath()%>/OrderHistoryServlet">Orders</a>
+				<li><a href="<%=request.getContextPath()%>/CartItemsDetails">Cart</a></li><%
 				} else {
 				%>
 				<li id="profile-btn"><a href="signup.jsp">Sign-in</a></li>
-
 				<%
 				}
 				%>
-				
-
 			</div>
 		</div>
 
 	</header>
+	
 	<main>
 
 		<div class="img1">
@@ -70,25 +65,24 @@
 				We Supply Organic<br>Fruits and Vegetables
 			</p>
 			<%
-				Boolean userloggedIn = (Boolean) session.getAttribute("loggedInSuccess");
-				if (userloggedIn != null && userloggedIn) {
-				%>
-				
+			Boolean userloggedIn = (Boolean) session.getAttribute("loggedInSuccess");
+			if (userloggedIn != null && userloggedIn) {
+			%>
+
 			<a class="shop"
 				href="http://localhost:8080/greenfarm-web/GetAllProductDetailsServlet">Shop
 				Now</a>
-					
-					<%
-				} else {
-				%>
-				<a class="shop"
-				href="signup.jsp" onclick="showSignInPopup()">Shop
+
+			<%
+			} else {
+			%>
+			<a class="shop" href="signup.jsp" onclick="showSignInPopup()">Shop
 				Now</a>
 
-				<%
-				}
-				%>
-			
+			<%
+			}
+			%>
+
 			<div class="bor">
 				<img src="https://iili.io/J9EoMvt.jpg" height="80px" width="80px"
 					alt="img"> <img src="https://iili.io/J9Eo4wu.jpg"
@@ -102,49 +96,51 @@
 					src="https://iili.io/J9Exglp.jpg" height="90px" width="90px"
 					alt="img"> <img src="https://iili.io/J9ExiOX.png"
 					height="80px" width="90px" alt="img"> <img
-					src="https://iili.io/J9ExQxs.jpg" height="80px" width="90px"
-					alt="img"> <img src="https://iili.io/J9Ezqqx.jpg"
+					src="https://iili.io/JA0R3iB.jpg" height="80px" width="90px"
+					alt="img"> <img src="https://iili.io/JA0RX07.jpg"
 					height="80px" width="90px" alt="img"> <img
-					src="https://iili.io/J9EzRLJ.jpg" height="90px" width="100px"
-					alt="img"> <img src="https://iili.io/J9EzldN.jpg"
+					src="https://iili.io/JA05HdX.jpg" height="90px" width="100px"
+					alt="img"> <img src="https://iili.io/JRUtr9j.jpg"
 					height="80px" width="100px" alt="img">
 			</div>
 
 		</div>
 		<!-- freshvegetables -->
 		<div class="bg">
-			<div class="mainpage2">
+			<div class="mainpage2" style="margin-left: 70px">
 
-				<div class="mpage1">
+				<div class="mpage1" style="border: 0px solid white; width: 1200px;">
 
-					<img class="p2" src="https://iili.io/J9EI5u9.jpg" height="300px"
-						width="450px" alt="img">
+					<img class="p2" src="https://iili.io/JRUDui7.jpg" height="300px"
+						width="450px" alt="img" style="position: relative; left: 20px;">
+
+					<img class="p2" src="https://iili.io/JAZsNNp.jpg" height="300px"
+						width="450px" alt="img" style="position: relative; left: 60px;">
 					<div class="page2">
-						<p class="fv">
-							FRESH<br> VEGETABLES
+						<p class="fv"
+							style="position: relative; left: 180px; font-size: 50px;">
+							FRESH<br> VEGETABLES<br>ONLY ON<br>GREENFARM
 						</p>
-						<p>
+						<!-- <p>
 							<a class="but" href="./home.jsp">View More</a>
 						</p>
+						 -->
 					</div>
 				</div>
 			</div>
 
 			<!-- freshfruits -->
-			<div class="mainpage3">
+			<!--  <div class="mainpage3">
 				<div class="mpage2">
 					<img class="p3" src="https://iili.io/J9EId2p.jpg" height="300px"
 						width="450px" alt="img">
 					<div class="page3">
 						<p class="ff">
-							FRESH<br>FRUITS
-						</p>
-						<p>
-							<a class="but1" href="./home.jsp">View More</a>
+							FRESH<br>FRUITS<br>ONLY ON<br>GREENFARM
 						</p>
 					</div>
 				</div>
-			</div>
+			</div>-->
 		</div>
 
 		<!-- features -->
@@ -182,7 +178,7 @@
 				DISCOUNT<br> OF 25% OFF<br> FOR YOUR<br> FIRST <br>PURCHASE
 			</h1>
 			<div class="borderofbox">
-				
+
 				<img class="feedback" src="https://iili.io/J9EAOMu.jpg" alt="image">
 				<form onsubmit="sendEmail(); reset(); return false;"
 					id="feedback_form">
@@ -204,7 +200,7 @@
 
 		<div id="slider">
 			<figure>
-				<img src="https://iili.io/J9ERaRV.jpg" alt="no error img">
+				<img src="https://iili.io/JRUDwJa.jpg" alt="no error img">
 				<img src="https://iili.io/J9ERfS4.jpg" alt="no error img">
 				<img src="https://iili.io/J9ERwRp.jpg" alt="no error img">
 				<img src="https://iili.io/J9E57Bn.jpg" alt="no error img">
@@ -288,15 +284,45 @@
 		<div class="foot"></div>
 
 	</footer>
-
+	<script src="https://smtpjs.com/v3/smtp.js"></script>
 	<script>
 		function showSignInPopup() {
-			
+
 			alert("You are not signed in. Please sign in to continue.");
 		}
+		
+		
+
+		
+	      function sendEmail() {
+	    	  
+	    	 let name = document.getElementById("name").value
+	  		let email =document.getElementById("email").value
+	  		let message =document.getElementById("message").value
+	  		
+	    	  console.log(name +"  "+email)
+	    	  
+	    	  console.log(1+"hiiii")
+	    	  console.log(name +"  "+email)
+
+	    	  
+	          Email.send({
+	            Host: "smtp.elasticemail.com",
+	            Username: "prathiusha22@gmail.com",
+	            Password: "CE4894D259B1A7D3136852B9F0F60CD46FC4",
+	            To: 'prathiusha22@gmail.com',
+	            From: 'prathiusha22@gmail.com',
+	            Subject: "Feedback",
+	            Body: "This user " + name +" sent Feedback through this " +email+" with a feedback "+message
+
+	          }).then(
+	            message => alert("Feedback sent Succesfully")
+	          );
+	          
+	        }
+	      
+	      
 	</script>
-	
-	
-	
+
 </body>
 </html>

@@ -35,6 +35,7 @@ public class SignupServlet extends HttpServlet {
 
         if (!password.equals(conformpassword)) {
             Logger.info("Password and confirm password don't match");
+            request.setAttribute("errorMessage", "Passwords do not match. Please check and try again.");
             RequestDispatcher rd = request.getRequestDispatcher("./signup.jsp");
             rd.forward(request, response);
         } else {
@@ -42,8 +43,7 @@ public class SignupServlet extends HttpServlet {
             try {
 				if (userdao.emailExists(email)) {
 				    response.setContentType("text/html");
-				    PrintWriter out = response.getWriter();
-				    out.println("<script>alert('Email already exists. Please use a different email.');</script>");
+				    request.setAttribute("errorMessage", "Email already exists. Please use a different email.");
 				    RequestDispatcher rd = request.getRequestDispatcher("./signup.jsp");
 				    rd.include(request, response);
 				} else {

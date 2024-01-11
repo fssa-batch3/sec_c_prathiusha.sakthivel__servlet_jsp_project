@@ -5,9 +5,10 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'poppins', sans-serif;
     font-size: 16px;
     overflow-x: hidden;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS',
+		sans-serif;
 }
 
 /* header */
@@ -114,7 +115,7 @@ table {
     background-color: #f2f2f2;
     width: 25%;
     margin-left: 20px;
-    height: 600px;
+    height: 500px;
 
 }
 

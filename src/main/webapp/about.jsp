@@ -4,6 +4,11 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 <link rel="stylesheet" href="assets/css/about.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+	integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+	crossorigin="anonymous" referrerpolicy="no-referrer">
+
 
 </head>
 <body>
@@ -17,8 +22,9 @@
 
 			<div class="main">
 				<a href="home.jsp">Home </a>
-			
-				<a href="./seller.html">Seller</a>
+			<a class="about" href="./about.jsp">About
+				</a>
+					<a class="product" href="http://localhost:8080/greenfarm-web/GetAllProductDetailsServlet">Products</a>
 
 		
 		
@@ -28,10 +34,13 @@
 				if (loggedIn != null && loggedIn) {
 				%>
 				<li class="register"><a href="<%=request.getContextPath()%>/UpdateProfile">Profile</a></li>
+							<a
+					href="<%=request.getContextPath()%>/LogoutServlet"><i class="fa-solid fa-arrow-right-from-bracket"
+					style="position: relative; left: 5px; font-size: 23px; color: white;"></i></a>
 				<%
 				} else {
 				%>
-				<li id="profile-btn"><a href="../signup.jsp">Sign-in</a></li>
+				<li id="profile-btn"><a href="signup.jsp">Sign-in</a></li>
 
 				<%
 				}
@@ -46,7 +55,7 @@
 	<main>
 		<div class="container">
 			<div class="heading">
-				<img class="heading1img" src="https://iili.io/J9WGCvI.jpg"
+				<img class="heading1img" src="https://iili.io/JRUDZzl.jpg"
 					height="200px" width="300px" alt="img">
 				<p class="para1">
 					Your rooftop farm can provide you nutritious food throughout the
@@ -118,7 +127,7 @@
 				<h2 class="toolheading">How you want to do Roof Farming?</h2>
 				<div class="toolparts">
 					<h3 class="required">Tools Required</h3>
-					<img src="https://iili.io/J9WGcy7.jpg" height="200px" width="250px"
+					<img src="https://iili.io/JRUDp19.jpg" height="200px" width="250px"
 						alt="img">
 					<ul>
 						<li>Trowel</li>
@@ -133,7 +142,7 @@
 		<!-- soil preparation -->
 		<div class="soil">
 			<h1>Soil Preparation</h1>
-			<img class="soilimg" src="https://iili.io/J9WGjaV.jpg" width="450px"
+			<img class="soilimg" src="https://iili.io/JRUb2mx.jpg" width="450px"
 				height="250px" alt="img">
 			<p class="soilpara">
 				Healthy soil leads to healthy plants! Soil that is properly
@@ -170,7 +179,7 @@
 		<!-- water proofing -->
 		<div class="watering">
 			<h1>Water Proofing</h1>
-			<img class="wateringimg" src="https://iili.io/J9WGg6v.jpg"
+			<img class="wateringimg" src="https://iili.io/JRUbnrF.jpg"
 				height="300px" width="200px" alt="img">
 			<p class="wateringpara">
 				If you are planning to build soil patches and raised beds on your
@@ -192,7 +201,7 @@
 		<!-- sunlight -->
 		<div class="sunlight">
 			<h1>Sunlight</h1>
-			<img class="sunlightimg" src="https://iili.io/J9WGs9I.png"
+			<img class="sunlightimg" src="https://iili.io/JRUbTmv.png"
 				height="300px" width="250px" alt="img">
 			<p class="sunlightpara">
 				Analyze the hours of the sunlight your balcony receives and the
@@ -208,14 +217,14 @@
 		</div>
 		<!-- plantimages -->
 		<div class="plantimages">
-			<img src="https://iili.io/J9WMFte.jpg" height="350px" width="400px"
-				alt="img"> <img src="https://iili.io/J9WMcKv.jpg"
+			<img src="https://iili.io/JRUbmjR.jpg" height="350px" width="400px"
+				alt="img"> <img src="https://iili.io/JRUbN49.jpg"
 				height="350px" width="400px" alt="img"> <img
-				src="https://iili.io/J9WMVDX.jpg" height="350px" width="400px"
-				alt="img"> <img src="https://iili.io/J9WMNff.jpg"
+				src="https://iili.io/JRUbvkb.jpg" height="350px" width="400px"
+				alt="img"> <img src="https://iili.io/JRUbWhl.jpg"
 				height="350px" width="400px" alt="img"> <img
-				src="https://iili.io/J9WM4Wu.jpg" height="350px" width="400px"
-				alt="img"> <img src="https://iili.io/J9WMifj.jpg"
+				src="https://iili.io/JRUbGpf.jpg" height="350px" width="400px"
+				alt="img"> <img src="https://iili.io/JRUmr9s.jpg"
 				height="350px" width="400px" alt="img">
 
 		</div>

@@ -44,12 +44,7 @@
             font-weight: bold;
         }
 
-        .feature-link:hover {
-            background-color: rgb(108, 145, 53);
-            color: white;
-            border-radius: 10px;
-            transition: background-color 0.3s ease-in-out;
-        }
+     
     </style>
 </head>
 

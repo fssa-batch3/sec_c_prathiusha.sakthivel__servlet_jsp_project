@@ -1,114 +1,101 @@
-/**
- * 
- */
 
 
 
- const url = window.location.search;
- const params = new URLSearchParams(url)
-
-	
-  const productId = params.get("id");
-
-
-    let increment1 = document.getElementById("increment")
-    let pricelist = document.getElementById("quantity_of_product");
-    let gramquantity=document.querySelector("gramquantity")
-    console.log(increment1)
-    let decrement1 = document.getElementById("decrement");
+const url = window.location.search;
+const params = new URLSearchParams(url)
+const productId = params.get("id");
+var displayQuantity = 250;
 
 
-    let maxbtn = document.getElementById("increment")
-    let minbtn = document.getElementById("decrement")
-    let input = document.querySelector("input")
-    let price = document.getElementById("quantity_of_product")
-    let gram = document.getElementById("gram")
-    let id = input.dataset.keyword
-	console.log(id);
-	
-	 let gram_value;
+var productPrice = document.getElementById('quantity_of_product').innerText;
+let value = productPrice.split(":");
+let finalPrice = parseFloat(value[1]);
 
+document.addEventListener("DOMContentLoaded" ,function () {
+    var quantity = 250;
+    var maxQuantity = 5000;
+    var incrementButton = document.getElementById('increment');
+    var decrementButton = document.getElementById('decrement');
+    var gramQuantityElement = document.getElementById('gram');
 
-    maxbtn.addEventListener("click",function () {
-      
+    console.log("hellooo");
 
-        let qty = parseFloat(input.value);
-       
-        if (qty < 20) { 
-        	
-        console.log(qty)
-        
-        qty = qty + 1
-        
-        console.log(qty)
-        
-        input.value = qty
-        
-        console.log(qty+" input")
-        console.log(input.value)
-        
-        gram_value = 250 * input.value;
-        
-        console.log(gram_value,"gr");
-        
-        
-        price.innerText = "Price : "+(id * input.value);
-        
-        	console.log(price.innerText);
-        	}
-        	
-        	 if(gram_value >= 250){
-          gram.innerText = "Quantity: "+gram_value+"g"
-          
-        	  console.log(gram_value)
+    incrementButton.addEventListener('click', function () {
+        if (quantity < maxQuantity) {
+            quantity += 250;
+            updateQuantity();
         }
-        
-        if(gram_value >= 1000){
-          gram.innerText = "Quantity: "+ (gram_value/1000) +"kg"
+    });
+
+    decrementButton.addEventListener('click', function () {
+        if (quantity > 250) {
+            quantity -= 250;
+            updateQuantity();
         }
-        
-       
+    });
 
-
-    })
-     //this event for decrease quantity value
-        minbtn.addEventListener("click",function () {
-        	
-            if (input.value !== "1") {
-            	
-         let qty = parseFloat(input.value);
-         qty = qty - 1
-         input.value = qty
-         let gram_value = 250 * input.value
-
-         price.innerText = "Price : "+ (id * input.value)
-
-         if(gram_value >= 250){
-          gram.innerText = "Quantity: "+gram_value+"g"
+    function updateQuantity() {
+        if (quantity >= 1000) {
+            displayQuantity = (quantity / 1000).toFixed(2) + 'kg';
+        } else {
+            displayQuantity = quantity + 'g';
         }
-        if(gram_value >= 1000){
-          gram.innerText = "Quantity: "+(gram_value/1000)+"kg"
-        }
-            }
+        gramQuantityElement.textContent = displayQuantity;
+
+    }
     
-        })	
-        
-
-        let buy = document.getElementById("buybutton");
     
-    	buy.addEventListener("click",function(){
-    			
-   		 let price = id * input.value;
-    	console.log(price+" price");
-    	
-    	let qunatitysss= input.value;
-
-  		window.location.href= location.origin+"/greenfarm-web/payment.jsp?id="+productId+"&price="+price+"&gram="+gram_value+"&quantity="+qunatitysss;
-  
-    			
- 	})        
-
-  
+    var buyButton = document.getElementById('buybutton');
+    var totalpriceElement = document.getElementById('totalprice_of_product');
+    
+    
+    buyButton.addEventListener('click', function () {
+        displayQuantity = parseFloat(displayQuantity);
+        if (displayQuantity < 1000 && displayQuantity > 200) {
+            displayQuantity = displayQuantity / 1000;
+        }
         
+
+        let priceUpdate = displayQuantity * finalPrice;
+        console.log(priceUpdate + "price");
+        console.log(typeof finalPrice + "price");
+        console.log(typeof displayQuantity + "quantity");
+        productPrice.innerHTML = priceUpdate;
+        console.log(typeof quantity + "mental");
+        console.log(typeof productPrice + "loosu");
+        let quant_div = Math.floor(quantity / 250);
+        var totalPrice = quant_div * priceUpdate;
+        console.log(totalPrice + "totalprice");
+
+        var redirectUrl = "/greenfarm-web/payment.jsp?id=" + productId + "&quantity=" + quantity + "&totalPrice=" + priceUpdate;
+
+        window.location.href = redirectUrl;
+    });
+    
+     var cartButton = document.getElementById("cartbutton");
+
+
+     cartButton.addEventListener('click', function () {
+	
+	 displayQuantity = parseFloat(displayQuantity);
+        if (displayQuantity < 1000 && displayQuantity > 200) {
+            displayQuantity = displayQuantity / 1000;
+        }
         
-      
+
+        let priceUpdate = displayQuantity * finalPrice;
+        console.log(priceUpdate + "price");
+        console.log(typeof finalPrice + "price");
+        console.log(typeof displayQuantity + "quantity");
+        productPrice.innerHTML = priceUpdate;
+        console.log(typeof quantity + "mental");
+        console.log(typeof productPrice + "loosu");
+        let quant_div = Math.floor(quantity / 250);
+        var totalPrice = quant_div * priceUpdate;
+        console.log(totalPrice + "totalprice");
+    window.location.href = "./CartServlet?productid=" + productId + "&quantity=" + quantity + "&price=" + priceUpdate;
+});
+
+});
+
+

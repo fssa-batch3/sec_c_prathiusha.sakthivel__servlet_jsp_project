@@ -10,7 +10,7 @@
 <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
   <img src="https://iili.io/JJWQfbR.jpg" style="height: 700px; width: 750px;">
   <button style="border: 2px solid #00dfc0; height: 30px; width: 200px; background-color: #00dfc0; margin-top: 30px;">
-    <a href="home.jsp" style="text-decoration: none; color: white; font-weight: bold; font-size: 20px;">Home</a>
+    <a href="home.jsp" style="text-decoration:none; color: white; font-weight: bold; font-size: 20px;">Home</a>
   </button>
 </div>
 

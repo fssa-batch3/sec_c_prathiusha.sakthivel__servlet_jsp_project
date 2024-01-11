@@ -2,6 +2,7 @@ package com.fssa.greenfarm.servlet;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,16 +34,14 @@ import com.google.protobuf.ServiceException;
 @WebServlet("/OrderServlet")
 public class OrderServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
- 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-	
-		
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		OrderService orderService = new OrderService();
-		UserDAO userDaO= new UserDAO();
+		UserDAO userDaO = new UserDAO();
 		int productId = Integer.parseInt(request.getParameter("id"));
-		
+
 		System.out.println(productId);
 		String address = request.getParameter("address");
 		String city = request.getParameter("city");
@@ -51,15 +50,16 @@ public class OrderServlet extends HttpServlet {
 		long mobilenumber = Long.parseLong(request.getParameter("mobilenumber"));
 		String paymenttype = request.getParameter("rdo");
 		HttpSession session = request.getSession();
-		String email= (String) session.getAttribute("email");
-		int totalPrice = Integer.parseInt(request.getParameter("price"));
+		String email = (String) session.getAttribute("email");
+		float totalPrice = Float.parseFloat(request.getParameter("price"));
 		int quantity = Integer.parseInt(request.getParameter("quantity"));
+
 		
-		
+
 		Order order = new Order();
 		OrderedProduct orderProduct = new OrderedProduct();
-		ProductService productService=new ProductService();
-		
+		ProductService productService = new ProductService();
+
 		try {
 			User user = userDaO.getUserByEmail(email);
 			Product product = productService.getProductById(productId);
@@ -67,36 +67,39 @@ public class OrderServlet extends HttpServlet {
 			int userId = UserDAO.getUserIdByEmail(user.getEmail());
 			orderProduct.setProductId(productId);
 			orderProduct.setProductname(product.getName());
-			
+
 			orderProduct.setProductPrice(product.getPrice());
-			
+
 			orderProduct.setQuantity(quantity);
-			
+
 			orderProduct.setTotalAmount(totalPrice);
-			
+
 			productsList.add(orderProduct);
 			order.setAddress(address);
 			order.setOrderedProducts(productsList);
 			order.setCity(city);
 			order.setState(state);
 			order.setPincode(pincode);
-			
+
 			order.setPaymentmethod(PaymentMethod.CASHONDELIVERY);
+			order.setOrderdate(LocalDate.now());
 			order.setUser_id(userId);
+			
 			order.setMobile_number(mobilenumber);
+			
 			System.out.println(order);
 			Logger.info(order);
 			orderService.createOrder(order);
 			Logger.info("Order Placed Sucessfully ");
-		} catch (DAOException | SQLException |InValidOrderDetailException|ServiceException |ProductInvalidException e) {
-			Logger.info("Order Failed"+e.getMessage());
+		} catch (DAOException | SQLException | InValidOrderDetailException | ServiceException
+				| ProductInvalidException e) {
+			Logger.info("Order Failed" + e.getMessage());
 			e.printStackTrace();
 		}
-		
+
 		RequestDispatcher rd = request.getRequestDispatcher("orderplaced.jsp");
 		rd.forward(request, response);
-		
-	
+
 	}
 
 }

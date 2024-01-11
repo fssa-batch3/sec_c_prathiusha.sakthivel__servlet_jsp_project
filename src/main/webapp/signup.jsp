@@ -68,22 +68,36 @@
 				Already have an Account? <a href="./login.jsp">Log-in<i
 					class="fa-sharp fa-solid fa-arrow-right"></i></a>
 			</p>
-
+			
+       <div id="error-message" class="error-message" style="color: red">
+    <% 
+        String errorMessage = (String) request.getAttribute("errorMessage");
+        if (errorMessage != null) {
+            out.print("<p class='error'>" + errorMessage + "</p>");
+        }
+    %>
+</div>
 		</form>
 	</div>
-	<script>
-		function validateForm() {
-			var password1 = document.getElementById("password").value;
-			var password2 = document.getElementById("password2").value;
+<script>
+function validateForm() {
+    var password1 = document.getElementById("password").value;
+    var password2 = document.getElementById("password2").value;
 
-			if (password1 !== password2) {
-				alert("Passwords do not match. Please check and try again.");
-				return false;
-			}
+    if (password1 !== password2) {
+        showError("Passwords do not match. Please check and try again.");
+        return false;
+    }
 
-			return true;
-		}
-	</script>
+    return true;
+}
+
+function showError(message) {
+    alert(message); 
+}
+
+   
+</script>
 
 </body>
 

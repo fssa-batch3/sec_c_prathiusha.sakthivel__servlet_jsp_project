@@ -23,25 +23,30 @@ public class deleteform extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-response.getWriter().append("Served at: ").append(request.getContextPath());
+//response.getWriter().append("Served at: ").append(request.getContextPath());
 	
 		
-		int productId = Integer.parseInt(request.getParameter("productid"));
-		String productname=request.getParameter("productname");
+        try {
+            int productId = Integer.parseInt(request.getParameter("id"));
+            String productName = request.getParameter("name");
 
-		ProductService productService = new ProductService();
+            ProductService productService = new ProductService();
+            productService.deleteProduct(productId, productName);
 
-		try {
+            // Set a success message as an attribute
+            request.setAttribute("successMessage", "Product deleted successfully");
 
-			productService.deleteProduct(productId, productname);
-			response.getWriter().append("Success");
-			response.sendRedirect(request.getContextPath() + "/GetAllProductDetailsServlet");
-		
-		} catch (ProductInvalidException | SQLException | DAOException e) {
-		
-			e.printStackTrace();
-		}
-	}
+        } catch (NumberFormatException | ProductInvalidException | SQLException | DAOException e) {
+            // Handle exceptions appropriately
+            e.printStackTrace();
+            // Set an error message as an attribute
+            request.setAttribute("errorMessage", "Error deleting product");
+        }
+
+        // Redirect to AdminServlet
+        response.sendRedirect(request.getContextPath() + "/AdminServlet");
+    }
+	
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

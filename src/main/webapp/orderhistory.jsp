@@ -16,6 +16,11 @@
 <meta charset="ISO-8859-1">
 <title>order history</title>
 <link rel="stylesheet" href="./assets/css/orderhistory.css">
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+	integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+	crossorigin="anonymous" referrerpolicy="no-referrer">
 <style>
 body {
 	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS',
@@ -101,17 +106,23 @@ body {
 
 		<div class="menu-bar">
 			<div class="search_box">
-				<input type="text" id="search" placeholder="search">
+				<input type="text" id="search" placeholder="search here...."
+					style="height: 30px; width: 200px; position: relative; left: -60px">
 			</div>
 
-			<ul class="main">
-				<li class="down"><a class="hdg" href="./pages/home.jsp">Home
-				</a></li>
+			<ul class="main" style="position: relative; left: -100px">
+				<li class="down"><a class="hdg" href="home.jsp">Home </a></li>
 
-				<li class="down"><a class="hdg" href="./pages/home.jsp">About</a>
+				<li class="down"><a class="hdg" href="about.jsp">About</a></li>
+				<li><a class="product" style="font-size: 25px;"
+					href="http://localhost:8080/greenfarm-web/GetAllProductDetailsServlet">Products</a>
 				</li>
 
-				<li><a class="hdg" href="./pages/seller.html">Seller</a></li>
+				<li><a class="hdg"
+					href="<%=request.getContextPath()%>/UpdateProfile">Profile</a></li>
+						<a
+					href="<%=request.getContextPath()%>/LogoutServlet"><i class="fa-solid fa-power-off"
+					style="position: relative; left: 40px; font-size: 23px;top:-40px; color: white;"></i></a>
 
 			</ul>
 		</div>
@@ -121,18 +132,29 @@ body {
 	<main>
 		<%
 		ArrayList<Order> orderDetails = (ArrayList<Order>) request.getAttribute("orderDetails");
-		System.out.print(orderDetails.size() + "got");
+		System.out.print(orderDetails + "got");
 
 		Product product2 = new Product();
+		boolean isCartEmpty = orderDetails == null || orderDetails.isEmpty();
 
+		if (isCartEmpty) {
+		%>
+		<!-- Display this image when the cart is empty -->
+		<img src="https://iili.io/JKRDEu9.jpg" alt="Empty Cart"
+			id="emptyCartImage"
+			style="display: block; margin-top: 200px; margin-left: 250px; height: 500px;">
+
+		<button
+			style="border: 2px solid #6c9135; height: 30px; width: 180px; background-color: #6c9135; color: white; margin-left: 650px">
+			<a href="home.jsp" style="text-decoration: none; color: white;">Back</a>
+		</button>
+		<%
+		} else {
 		for (Order order : orderDetails) {
 
 			for (OrderedProduct product : order.getOrderedProducts()) {
 
 				Product product1 = ProductDAO.getProductById(product.getProductId());
-				int val = product.getStatus();
-				Logger.info(("val: " + val));
-				if (1 == val) {
 		%>
 
 		<!-- This is order history -->
@@ -144,29 +166,66 @@ body {
 						<img id="order-image1" src="<%=product1.getImageURL()%>">
 					</div>
 					<div class="order-ditail">
-						<h4 id="order-name">Product Name:</h4>
-					
+						<h4 id="order-name">Product:</h4>
+
 						<h4 id="order-name"><%=product.getProductname()%></h4>
 
 					</div>
 					<div class="order-price">
 						<h4 id="order-name">Total Price:</h4>
-						<h4 id="order-price"><%=product.getTotalAmount()%></h4>
+						<h4 id="order-price">
+							&#8377;<%=product.getTotalAmount()%></h4>
 					</div>
 					<div class="oeder-address">
-						<h4 id="order-name">Product Quantity:</h4>
-						<h4 id="order-price"><%=product.getQuantity()%></h4>
+						<h4 id="order-name"> Quantity:</h4>
+						<h4 id="order-price">
+							<%
+							double quantity = product.getQuantity();
+							if (quantity < 1000) {
+								out.print(quantity + " g");
+							} else {
+								out.print((quantity / 1000) + " kg");
+							}
+							%>
+						</h4>
+						<div>
+						<h4>Ordered Date</h4>
+						<h4><%=order.getOrderdate().toString()%></h4>
+						</div>
 
 					</div>
 					<div class="button">
+
+
+
+						<%
+						if (product.getStatus() == 1) {
+						%>
 						<form
 							action="<%=request.getContextPath()%>/CancelOrder?orderId=<%=order.getOrder_id()%>"
 							method="post">
 
 							<button type="submit"
-								style="border: 2px solid #6c9135; height: 30px; width: 150px; background-color: #6c9135; color: white; margin-left: -100px">
-								Cancel Order</button>
+								style="border: 2px solid #6c9135; height: 30px; width: 150px; background-color: #6c9135; color: white; margin-left: -100px"
+								id="cancelButton">cancel order</button>
+
 						</form>
+
+						<%
+						} else {
+						%>
+						<form
+							action="<%=request.getContextPath()%>/CancelOrder?orderId=<%=order.getOrder_id()%>"
+							method="post">
+							<button type="submit"
+								style="border: 2px solid red; height: 30px; width: 150px; background-color: red; color: white; margin-left: -100px"
+								id="cancelButton">Cancelled</button>
+							<%
+							}
+							%>
+
+						</form>
+
 					</div>
 				</div>
 			</div>
@@ -181,12 +240,12 @@ body {
 	</main>
 
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-	
+
 	<script>
 	
 	<%String errorMsg = (String) request.getAttribute("success");
-   
-          if (errorMsg != null) {%>
+
+if (errorMsg != null) {%>
 		
 		<%System.out.print(errorMsg + "inside");%>
 		
@@ -195,10 +254,8 @@ body {
 		setTimeout(() => {
 			console.log("df");
 			window.location.href="OrderHistoryServlet";
-		}, 1000);//code will excute after 1 second because of the setTimeout func()
-		
+		}, 1000);//after one second the msg will come
 	<%}%>
-	
 	</script>
 
 

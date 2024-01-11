@@ -231,8 +231,6 @@ a {
 }
 
 .mpage1 {
-	width: 620px;
-	height: 350px;
 	display: flex;
 	flex-direction: row;
 	border: 5px solid rgb(108, 145, 53);
@@ -250,25 +248,7 @@ a {
 	transform: scale(1.05);
 }
 
-.mpage2 {
-	width: 620px;
-	height: 350px;
-	display: flex;
-	flex-direction: row;
-	border: 5px solid rgb(108, 145, 53);
-	border-radius: 50px;
-	box-shadow: 15px 15px 15px rgb(170, 174, 171);
-	align-items: center;
-	background-color: rgb(245, 251, 246);
-	margin-left: 70px;
-	margin-top: 55px;
-	margin-bottom: 200px;
-	transition: 0.5s;
-}
 
-.mpage2:hover {
-	transform: scale(1.05);
-}
 
 .p2 {
 	height: 300px;

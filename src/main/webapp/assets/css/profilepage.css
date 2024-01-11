@@ -14,6 +14,7 @@ body {
     width: 1200px;
     margin-left: 140px;
     margin-top: 70px;
+    
 
 }
 
@@ -57,13 +58,14 @@ button {
     border-radius: 30px;
     border-color: rgb(235, 232, 225);
     background: rgba(0, 0, 0, 0.7);
-    color: wheat;
+        color: white;
+    font-weight: bold;
 
 }
 
 button:hover {
     color: white;
-    background-color: green;
+    background-color: rgb(159, 215, 54);
 }
 
 .profile_image img {
@@ -98,18 +100,16 @@ button:hover {
     transform: translateX(-50%);
     text-align: center;
     background: rgba(0, 0, 0, 0.7);
-    color: wheat;
     line-height: 30px;
     cursor: pointer;
     margin-top: 250px;
     margin-left: -80px;
     /* display: none; */
+    color: white;
+    font-weight: bold;
 }
 
-#uploadbtn:hover {
-    color: white;
-    background-color: green;
-}
+
 
 label {
     font-size: 20px;
@@ -160,8 +160,9 @@ h1 {
     display: flex;
     justify-content: space-evenly;
     position: relative;
-    left: 150px;
+    left: 290px;
     top: -600px;
+    width: 70%;
 }
 
 .address_container {
@@ -233,7 +234,7 @@ a {
         border-radius: 30px;
         border-color: rgb(235, 232, 225);
         background: rgba(0, 0, 0, 0.7);
-        color: wheat;
+ 
 
 
     }
