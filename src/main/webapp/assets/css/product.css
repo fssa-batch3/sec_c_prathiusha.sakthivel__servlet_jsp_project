@@ -1,0 +1,167 @@
+@charset "ISO-8859-1";
+
+body {
+	overflow-x: hidden;
+	margin: 0;
+	padding: 0;
+}
+
+/* header */
+header {
+	background-color: rgb(108, 145, 53);
+	height: 100px;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	z-index: 2;
+	display: flex;
+}
+
+#search {
+	margin-top: 30px;
+	margin-left: -250px;
+	height:40px;
+	width:200px;
+}
+
+.menu-bar ul {
+	list-style: none;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	text-decoration: none;
+}
+
+.menu-bar {
+	margin-left: 400px;
+	margin-top: -20px;
+}
+
+.hdg {
+	font-size: 25px;
+}
+
+header a {
+	text-decoration: none;
+	font-size: 15px;
+	font-weight: 700;
+	color: white;
+}
+
+.menu-bar ul li {
+	padding-left: 70px;
+}
+
+.logo {
+	border: 2px solid white;
+	border-radius: 20px;
+	height: 60px;
+	width: 160px;
+	margin-left: 250px;
+	margin-top: 20px;
+}
+
+.navi {
+	text-decoration: none;
+	color: white;
+}
+
+.navi:hover {
+	font-size: 35px;
+	color: black;
+}
+
+/* product-list-container start */
+
+/* product card start */
+main .product-list-container {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin: 150px 20px 40px 20px;
+}
+
+main .product-list-container .product-card {
+	border: 2px solid rgb(218, 224, 220);
+	box-shadow: -5px 5px 10px 5px rgb(196, 229, 186);
+	width: 275px;
+	height: 470px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-evenly;
+	margin: 20px;
+}
+
+main .product-list-container .product-card img {
+	width: 200px;
+}
+
+main .product-list-container .product-card p {
+	font-weight: 800px;
+	font-size: 20px;
+	color: black;
+}
+
+main .product-list-container .product-card .product-ratings {
+	margin-bottom: 15px;
+}
+
+main .product-list-container .product-card .product-ratings i {
+	color: gold;
+	font-size: 20px;
+}
+
+main .product-list-container .product-card .buy-now, main .product-list-container .product-card .add-to-cart
+	{
+	border: 0px solid rgb(108, 145, 53);
+	border-radius: 30px;
+	background-color: rgb(108, 145, 53);
+	font-size: 20px;
+	padding: 5px 40px 5px 40px;
+	margin-bottom: 10px;
+	color: white;
+}
+
+.product-list-container a {
+	text-decoration: none;
+}
+
+/* product card end */
+/* product-list-container end */
+.footer {
+	background-color: white;
+	color: rgb(108, 145, 53);
+	display: flex;
+	justify-content: space-around;
+	line-height: 2;
+	letter-spacing: 2px;
+	font-size: 20px;
+	padding-top: 30px;
+	padding-bottom: 30px;
+}
+
+@media screen and (max-width:400px) {
+}
+
+/* footer */
+.footer1 {
+	display: flex;
+	align-items: center;
+}
+
+.footerone {
+	padding-left: 30px;
+}
+
+.footertwo {
+	display: flex;
+	align-items: center;
+}
+
+.foot {
+	background-color: rgb(108, 145, 53);
+	height: 50px;
+	width: 100%;
+}
