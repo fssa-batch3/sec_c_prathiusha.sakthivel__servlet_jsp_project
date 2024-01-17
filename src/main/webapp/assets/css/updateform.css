@@ -1,0 +1,99 @@
+@charset "ISO-8859-1";
+/* Reset some default styling */
+body, h1, h2, h3, h4, p, ul, ol, li, form {
+    margin: 0;
+    padding: 0;
+}
+body{
+	font-size:20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Header styling */
+header {
+    background-color:  rgb(108, 145, 53);
+    color: #fff;
+    padding: 10px 0;
+}
+
+.logo {
+    margin: 0 90px;
+}
+
+.menu-bar {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+    font-size:25px;
+}
+
+.menu-bar a {
+    color: #fff;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+/* Main content styling */
+.main {
+    display: flex;
+}
+
+.titlename,
+.imageurl,
+.productprice,
+.Quantity,
+.rating {
+    margin: 10px;
+}
+
+/* Form element styling */
+label {
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background-color: #fff;
+    color: #333;
+}
+
+/* Button styling */
+.create,
+.update,.delete{
+    padding: 10px 20px;
+    background-color:  rgb(108, 145, 53);
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size:20px;
+}
+
+.create:hover,
+.update:hover,
+.delete:hover {
+    background-color: #555;
+}
