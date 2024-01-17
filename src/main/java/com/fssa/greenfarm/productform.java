@@ -57,7 +57,7 @@ public class productform extends HttpServlet {
 		e.printStackTrace();
 	}
 	
-		RequestDispatcher dis = request.getRequestDispatcher("/AdminServlet");
+		RequestDispatcher dis = request.getRequestDispatcher("/product.jsp");
 	    dis.forward(request, response);
   
 }

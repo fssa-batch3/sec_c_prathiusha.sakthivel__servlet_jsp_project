@@ -24,8 +24,10 @@ public class updateform extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//add product
+	     ProductService productservice=new ProductService();
 	     
-	     int productId = Integer.parseInt(request.getParameter("productId"));
+	     int ProductInt = Integer.parseInt(request.getParameter("productid"));
 	     String Productname = request.getParameter("productname");
 	     String Productimageurl = request.getParameter("imageurl");
 	     double Productprice = Double.parseDouble(request.getParameter("price"));
@@ -35,10 +37,9 @@ public class updateform extends HttpServlet {
 	     int OfferPercentage=Integer.parseInt(request.getParameter("percentage"));
 	     LocalDate createddate =LocalDate.parse(request.getParameter("createdDate"));
 
-	     ProductService productservice=new ProductService();
-
 	     Product product = new Product();
-	     product.setId(productId);
+	     
+	     product.setId(ProductInt);
 	     product.setName(Productname);
 	     product.setImageURL(Productimageurl);
 	     product.setPrice(Productprice);
@@ -49,19 +50,17 @@ public class updateform extends HttpServlet {
 	     product.setPercentage(OfferPercentage);
 	     
 	     try {
-	    	 if(productservice.updateProduct(product)) {
-			System.out.println("successful");
-
-	    	 }
+			productservice.updateProduct(product);
+            response.sendRedirect(request.getContextPath()+"/GetAllProductDetailsServlet");
 		} catch (SQLException | DAOException | ProductInvalidException e) {
 			e.printStackTrace();
 		}
-	     RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher( "/AdminServlet");
-	     dispatcher.forward(request, response);
-
+		
+//			RequestDispatcher dis = request.getRequestDispatcher("/product.jsp");
+//		    dis.forward(request, response);
+//	  
 	}
 
 	}
-
 
 
