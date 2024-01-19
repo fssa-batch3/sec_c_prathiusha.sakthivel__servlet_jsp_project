@@ -41,7 +41,7 @@ public class CartServlet extends HttpServlet {
 		int productid = Integer.parseInt(request.getParameter("productid"));
 		float quantity = Float.parseFloat(request.getParameter("quantity"));
 		float price = Float.parseFloat(request.getParameter("price"));
-		float totalprice = price * quantity;
+
 
 		//check whether the product is already there using the dao method .
 		//if(true) the below code 
@@ -53,7 +53,7 @@ public class CartServlet extends HttpServlet {
 			User user = userdao.getUserByEmail(email);
 			int userId = UserDAO.getUserIdByEmail(user.getEmail());
 			CartItems cart = new CartItems();
-			cart.setTotalprice(totalprice);
+			cart.setTotalprice(price);
 			cart.setQuantity(quantity);
 			cart.setProduct_id(productid);
 			cart.setUser_id(userId);

@@ -26,8 +26,15 @@ function getSelectedCartIds() {
     });
 
     if (selectedIds.length > 0) {
-        var selectedIdsParam = selectedIds.join(',');
-        window.location.href = './cartpayment?cartIds=' + selectedIdsParam;
+
+        if(selectedIds.length>1){
+            var selectedIdsParam = selectedIds.join(',');
+            window.location.href = './AllCheckoutServlet?id=' + selectedIdsParam;
+        }else {
+
+            window.location.href = './AllCheckoutServlet?id=' + selectedIds[0]+",";
+        }
+
     } else {
         alert('Please select at least one product.');
     }

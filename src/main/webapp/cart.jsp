@@ -27,15 +27,15 @@
 		<div class="menu-bar">
 
 			<ul class="main">
-				<li class="down"><a class="hdg" href="../pages/home.html"
+				<li class="down"><a class="hdg" href="home.jsp"
 					style="font-size: 25px;">Home </a></li>
 
 
-				<li><a class="hdg" href="../html/profilepage.html"
+				<li><a class="hdg" href="profilepage.jsp"
 					style="font-size: 25px;">Profile</a></li>
 				<li><a class="product"
 					style="position: relative; left: -25px; font-size: 24px;"
-					href="http://localhost:8080/greenfarm-web/GetAllProductDetailsServlet"
+					href="<%=request.getContextPath()%>/GetAllProductDetailsServlet"
 					style="font-size: 25px;">Products</a></li>
 				<a href="<%=request.getContextPath()%>/LogoutServlet"><i
 					class="fa-solid fa-arrow-right-from-bracket"
@@ -105,7 +105,7 @@
 						style="position: relative; left: 50px;">
 					<p class="title" style="position: relative; left: 230px;"><%=product.getName()%></p>
 					<p class="price" style="position: relative; left: 470px;">
-						&#8377;<%=product.getPrice()%></p>
+						&#8377;<%=cart.getTotalprice()%></p>
 					<p class="price"
 						style="position: relative; left: 670px; top: -99px;">
 						<%
@@ -134,9 +134,7 @@
 			<div class="summary">
 				<%
 				for (CartItems carts : cartDetails) {
-
-					product = ProductDAO.getProductById(carts.getProduct_id());
-					count_1 += product.getPrice();
+					count_1 += carts.getTotalprice();
 				}
 				%>
 

@@ -24,7 +24,7 @@
 				<a href="home.jsp">Home </a>
 			<a class="about" href="./about.jsp">About
 				</a>
-					<a class="product" href="http://localhost:8080/greenfarm-web/GetAllProductDetailsServlet">Products</a>
+					<a class="product" href="<%=request.getContextPath()%>/GetAllProductDetailsServlet">Products</a>
 
 		
 		

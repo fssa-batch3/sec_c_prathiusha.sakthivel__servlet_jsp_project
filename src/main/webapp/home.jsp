@@ -27,7 +27,7 @@
 				<div class="dropdown">
 
 					<a class="product"
-						href="http://localhost:8080/greenfarm-web/GetAllProductDetailsServlet">Products</a>
+						href="<%=request.getContextPath()%>/GetAllProductDetailsServlet">Products</a>
 
 					<!--  -->
 					<div class="dropdown-content">

@@ -30,7 +30,7 @@
 
 					<a class="product"
 						style="position: relative; left: 10px; font-size: 24px;"
-						href="http://localhost:8080/greenfarm-web/GetAllProductDetailsServlet">Products</a>
+						href="<%=request.getContextPath()%>/GetAllProductDetailsServlet">Products</a>
 
 				</div>
 

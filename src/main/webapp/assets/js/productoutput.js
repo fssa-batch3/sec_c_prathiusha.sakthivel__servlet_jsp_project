@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded" ,function () {
         var totalPrice = quant_div * priceUpdate;
         console.log(totalPrice + "totalprice");
 
-        var redirectUrl = "/greenfarm-web/payment.jsp?id=" + productId + "&quantity=" + quantity + "&totalPrice=" + priceUpdate;
+        var redirectUrl = "/greenfarm-web/AllCheckoutServlet?id=" + productId + "&total_qty=" + displayQuantity + "&total_price=" + priceUpdate;
 
         window.location.href = redirectUrl;
     });
@@ -84,6 +84,7 @@ document.addEventListener("DOMContentLoaded" ,function () {
         
 
         let priceUpdate = displayQuantity * finalPrice;
+
         console.log(priceUpdate + "price");
         console.log(typeof finalPrice + "price");
         console.log(typeof displayQuantity + "quantity");
@@ -93,7 +94,7 @@ document.addEventListener("DOMContentLoaded" ,function () {
         let quant_div = Math.floor(quantity / 250);
         var totalPrice = quant_div * priceUpdate;
         console.log(totalPrice + "totalprice");
-    window.location.href = "./CartServlet?productid=" + productId + "&quantity=" + quantity + "&price=" + priceUpdate;
+    window.location.href = "./CartServlet?productid=" + productId + "&quantity=" + displayQuantity + "&price=" + priceUpdate;
 });
 
 });

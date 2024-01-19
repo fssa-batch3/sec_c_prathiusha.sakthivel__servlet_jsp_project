@@ -29,7 +29,7 @@
 			<li class="down"><a class="hdg" href="home.jsp">Home </a></li>
 			<li><a class="product"
 				style="position: relative; left: -25px; font-size: 24px;"
-				href="http://localhost:8080/greenfarm-web/GetAllProductDetailsServlet">Products</a>
+				href="<%=request.getContextPath()%>/GetAllProductDetailsServlet">Products</a>
 
 			</li>
 			<li style="position: relative; left: -35px;"><a class="hdg"

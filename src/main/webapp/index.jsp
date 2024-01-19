@@ -53,19 +53,19 @@
     <div class="container">
         <ul class="features">
             <li class="feature-item">
-                <a class="feature-link" href="GetAllProductDetailsServlet">Get All Product Details</a>
+                <a class="feature-link" href="<%=request.getContextPath()%>/GetAllProductDetailsServlet">Get All Product Details</a>
             </li>
             <li class="feature-item">
-                <a class="feature-link" href="productform.jsp">Add Product</a>
+                <a class="feature-link" href="<%=request.getContextPath()%>/productform.jsp">Add Product</a>
             </li>
             <li class="feature-item">
-                <a class="feature-link" href="updateform.jsp">Update Product</a>
+                <a class="feature-link" href="<%=request.getContextPath()%>/updateform.jsp">Update Product</a>
             </li>
             <li class="feature-item">
-                <a class="feature-link" href="delete.jsp">Delete Product</a>
+                <a class="feature-link" href="<%=request.getContextPath()%>/delete.jsp">Delete Product</a>
             </li>
             <li class="feature-item">
-                <a class="feature-link" href="searchproductprice.jsp">Filter Product By Price</a>
+                <a class="feature-link" href="<%=request.getContextPath()%>/searchproductprice.jsp">Filter Product By Price</a>
             </li>
         </ul>
     </div>

@@ -115,7 +115,7 @@ body {
 
 				<li class="down"><a class="hdg" href="about.jsp">About</a></li>
 				<li><a class="product" style="font-size: 25px;"
-					href="http://localhost:8080/greenfarm-web/GetAllProductDetailsServlet">Products</a>
+					href="<%=request.getContextPath()%>/GetAllProductDetailsServlet">Products</a>
 				</li>
 
 				<li><a class="hdg"
