@@ -82,7 +82,7 @@
 						<th width="360" class="head-img"
 							style="position: relative; left: 90px;">Name</th>
 						<th width="150" class="head-img"
-							style="position: relative; left: -90px;">Price Per Kg</th>
+							style="position: relative; left: -90px;">Price</th>
 						<th width="150" class="head-img"
 							style="position: relative; left: -30px;">Quantity</th>
 						<th width="150" class="head-img"

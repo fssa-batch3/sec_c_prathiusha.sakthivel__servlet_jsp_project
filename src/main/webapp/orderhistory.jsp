@@ -120,9 +120,7 @@ body {
 
 				<li><a class="hdg"
 					href="<%=request.getContextPath()%>/UpdateProfile">Profile</a></li>
-						<a
-					href="<%=request.getContextPath()%>/LogoutServlet"><i class="fa-solid fa-power-off"
-					style="position: relative; left: 40px; font-size: 23px;top:-40px; color: white;"></i></a>
+						
 
 			</ul>
 		</div>
@@ -171,25 +169,25 @@ body {
 						<h4 id="order-name"><%=product.getProductname()%></h4>
 
 					</div>
-					<div class="order-price">
+					<div class="order-price" >
 						<h4 id="order-name">Total Price:</h4>
 						<h4 id="order-price">
 							&#8377;<%=product.getTotalAmount()%></h4>
 					</div>
-					<div class="oeder-address">
+					<div class="oeder-address" style="position: relative;left: -10px;top: 40px;">
 						<h4 id="order-name"> Quantity:</h4>
 						<h4 id="order-price">
 							<%
-							double quantity = product.getQuantity();
-							if (quantity < 1000) {
-								out.print(quantity + " g");
-							} else {
-								out.print((quantity / 1000) + " kg");
-							}
-							%>
+				double quantity = product.getQuantity();
+				if (quantity < 1.0) {
+					out.print(quantity + "g");
+				} else {
+					out.print(quantity + "kg");
+				}
+				%>
 						</h4>
-						<div>
-						<h4>Ordered Date</h4>
+						<div style="position: relative;left: 150px;top: -78px;">
+						<h4>Ordered Date:</h4>
 						<h4><%=order.getOrderdate().toString()%></h4>
 						</div>
 
